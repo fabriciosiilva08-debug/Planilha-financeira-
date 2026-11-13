@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!--ARTIFACT-START-->
-<title>Camada Zero 3D</title>
+<title>CreativeG</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Peças impressas em 3D: decoração, utilidades e presentes personalizados. Enviamos para todo o Brasil.">
-<meta property="og:title" content="Camada Zero 3D · Peças impressas em 3D">
-<meta property="og:description" content="Decoração, utilidades e presentes personalizados, impressos camada por camada.">
+<meta name="description" content="Personagens animados impressos em 3D: bonecos, chibis personalizados e miniaturas cartoon. Pix ou cartão em até 12x.">
+<meta property="og:title" content="CreativeG · Personagens impressos em 3D">
+<meta property="og:description" content="Bonecos, chibis e miniaturas cartoon que saem da tela para a sua estante.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -248,6 +248,15 @@ footer .socials { display: flex; gap: 1rem; }
 
 .toast { position: fixed; z-index: 60; left: 50%; bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: .7rem 1.1rem; border-radius: 999px; font-size: .9rem; box-shadow: var(--shadow); max-width: calc(100% - 32px); text-align: center; }
 
+.fig { transform-box: fill-box; transform-origin: 50% 100%; animation: bob 3.2s ease-in-out infinite; }
+.card:nth-child(3n+2) .fig { animation-delay: -1.1s; }
+.card:nth-child(3n) .fig { animation-delay: -2.2s; }
+.card:hover .fig { animation: hop .7s cubic-bezier(.3,.7,.3,1) infinite; }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-4px) rotate(-1.5deg); } }
+@keyframes hop { 0%, 100% { transform: translateY(0) scale(1, 1); } 15% { transform: translateY(0) scale(1.06, .94); } 50% { transform: translateY(-12px) scale(.97, 1.03); } }
+.eyes { transform-box: fill-box; transform-origin: center; animation: blink 4.5s infinite; }
+@keyframes blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
@@ -265,11 +274,11 @@ footer .socials { display: flex; gap: 1rem; }
   <div class="wrap">
     <a class="brand" href="#inicio" id="brandLink">
       <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-      <span id="brandName">Camada Zero 3D</span>
+      <span id="brandName">CreativeG</span>
     </a>
     <nav class="nav" aria-label="Seções">
       <a href="#loja">Loja</a>
-      <a href="#encomenda">Sob encomenda</a>
+      <a href="#encomenda">Crie o seu</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#duvidas">Dúvidas</a>
     </nav>
@@ -284,22 +293,22 @@ footer .socials { display: flex; gap: 1rem; }
   <section class="hero">
     <div class="wrap">
       <div>
-        <p class="label">Feito sob demanda · enviado para todo o Brasil</p>
-        <h1><span class="ln">Peças impressas</span><span class="ln">em 3D, camada</span><span class="ln">por <em>camada</em>.</span></h1>
-        <p class="lead" id="heroLead">Decoração, utilidades e presentes personalizados. Cada peça sai da impressora com o seu nome, a sua cor e o seu tamanho.</p>
+        <p class="label">Personagens impressos em 3D · enviados para todo o Brasil</p>
+        <h1><span class="ln">Personagens que</span><span class="ln">saem da tela para</span><span class="ln">a sua <em>estante</em>.</span></h1>
+        <p class="lead" id="heroLead">Bonecos, chibis e miniaturas cartoon impressos camada por camada e pintados à mão. Escolha um da galeria ou peça o seu, feito a partir de uma foto.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#loja">Ver produtos</a>
-          <a class="btn btn-ghost" href="#encomenda">Pedir peça personalizada</a>
+          <a class="btn btn-primary" href="#loja">Ver personagens</a>
+          <a class="btn btn-ghost" href="#encomenda">Criar meu personagem</a>
         </div>
         <div class="spec-strip mono">
-          <span>Material <b>PLA / PETG</b></span>
-          <span>Camada <b>0,12–0,28 mm</b></span>
-          <span>Mesa <b>256 × 256 mm</b></span>
+          <span>Material <b>resina e PLA</b></span>
+          <span>Camada <b>0,05–0,2 mm</b></span>
+          <span>Acabamento <b>pintura à mão</b></span>
         </div>
       </div>
       <div class="printer" aria-hidden="true">
         <canvas id="printerCanvas" width="600" height="600"></canvas>
-        <div class="tag mono" id="printerTag">camada 112 / 180</div>
+        <div class="tag mono" id="printerTag">camada 150 / 176</div>
       </div>
     </div>
   </section>
@@ -308,8 +317,8 @@ footer .socials { display: flex; gap: 1rem; }
     <div class="wrap">
       <div class="perk"><strong>Pix com desconto</strong><span id="perkPix">5% off pagando no Pix</span></div>
       <div class="perk"><strong>Frete grátis</strong><span id="perkFrete">acima de R$ 199</span></div>
-      <div class="perk"><strong>Personalize</strong><span>nome, cor e tamanho</span></div>
-      <div class="perk"><strong>Pronto em</strong><span>2 a 5 dias úteis</span></div>
+      <div class="perk"><strong>Cartão de crédito</strong><span id="perkCartao">em até 12x</span></div>
+      <div class="perk"><strong>Pronto em</strong><span>3 a 7 dias úteis</span></div>
     </div>
   </div>
 
@@ -317,8 +326,8 @@ footer .socials { display: flex; gap: 1rem; }
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="label">Vitrine</p>
-          <h2>Saindo da impressora</h2>
+          <p class="label">Galeria</p>
+          <h2>Escolha seu personagem</h2>
         </div>
         <div class="chips" id="filters" role="group" aria-label="Filtrar por categoria"></div>
       </div>
@@ -329,18 +338,19 @@ footer .socials { display: flex; gap: 1rem; }
   <section class="custom" id="encomenda">
     <div class="wrap">
       <div>
-        <p class="label" style="color: inherit; opacity: .7">Sob encomenda</p>
-        <h2>Tem uma ideia? A gente imprime.</h2>
-        <p>Mande uma foto, um desenho ou um arquivo STL. Respondemos com orçamento, prazo e uma prévia da peça antes de imprimir.</p>
+        <p class="label" style="color: inherit; opacity: .7">Crie o seu</p>
+        <h2>Você, seu pet ou seu desenho em versão personagem.</h2>
+        <p>Mande uma foto ou um desenho. A gente modela em estilo cartoon, mostra uma prévia em 3D para você aprovar e só depois imprime e pinta.</p>
         <div class="hero-cta" style="margin-top: 1.5rem">
-          <a class="btn btn-primary" id="customBtn" href="#" target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a>
+          <a class="btn btn-primary" id="customBtn" href="#" target="_blank" rel="noopener">Criar meu personagem no WhatsApp</a>
         </div>
       </div>
       <ul>
-        <li><span>Topo de bolo e lembrancinhas</span><span>a partir de R$ 9,90/un</span></li>
-        <li><span>Miniatura de pet ou personagem</span><span>a partir de R$ 79</span></li>
-        <li><span>Peça de reposição e encaixes</span><span>sob orçamento</span></li>
-        <li><span>Brindes com logo para empresas</span><span>acima de 20 un</span></li>
+        <li><span>Chibi de você ou do casal</span><span>a partir de R$ 149</span></li>
+        <li><span>Miniatura cartoon do seu pet</span><span>a partir de R$ 119</span></li>
+        <li><span>Personagem do seu desenho</span><span>sob orçamento</span></li>
+        <li><span>Topo de bolo com personagem</span><span>a partir de R$ 89</span></li>
+        <li><span>Mascote para empresa ou canal</span><span>acima de 10 un</span></li>
       </ul>
     </div>
   </section>
@@ -349,9 +359,9 @@ footer .socials { display: flex; gap: 1rem; }
     <div class="wrap">
       <div class="sec-head"><div><p class="label">Do pedido à sua casa</p><h2>Como funciona</h2></div></div>
       <div class="steps">
-        <div class="step"><h3>Você escolhe</h3><p>Produto, cor do filamento e, se quiser, o texto da personalização.</p></div>
-        <div class="step"><h3>Paga no Pix</h3><p>O QR Code já sai com o valor certo. Cartão também vale, com link de pagamento.</p></div>
-        <div class="step"><h3>A gente imprime</h3><p>Sua peça entra na fila da impressora. Mandamos foto quando ficar pronta.</p></div>
+        <div class="step"><h3>Você escolhe</h3><p>O personagem, a cor e, se quiser, o nome ou os detalhes para personalizar.</p></div>
+        <div class="step"><h3>Paga no Pix ou cartão</h3><p>Pix com QR Code na hora e desconto, ou cartão de crédito em até 12x no checkout seguro.</p></div>
+        <div class="step"><h3>A gente imprime</h3><p>Seu personagem é impresso, lixado e pintado à mão. Mandamos foto antes de enviar.</p></div>
         <div class="step"><h3>Chega até você</h3><p>Enviamos pelos Correios com código de rastreio, ou você retira em mãos.</p></div>
       </div>
     </div>
@@ -361,10 +371,11 @@ footer .socials { display: flex; gap: 1rem; }
     <div class="wrap">
       <div class="sec-head"><div><p class="label">Antes de comprar</p><h2>Dúvidas comuns</h2></div></div>
       <div class="faq">
-        <details><summary>Qual o prazo de produção?</summary><p>De 2 a 5 dias úteis, dependendo do tamanho da peça e da fila. Peças personalizadas podem levar 1 dia a mais. O prazo dos Correios conta depois do envio.</p></details>
-        <details><summary>De que material são as peças?</summary><p>PLA, um plástico feito de amido de milho, rígido e com ótimo acabamento. Para peças que pegam sol ou calor usamos PETG, mais resistente.</p></details>
-        <details><summary>As linhas de camada aparecem?</summary><p>Sim, de leve. É a marca registrada da impressão 3D. Em peças decorativas usamos camadas finas (0,12 mm) para deixar a superfície mais lisa.</p></details>
-        <details><summary>Vocês imprimem um arquivo que eu já tenho?</summary><p>Sim. Mande o STL ou o 3MF no WhatsApp e respondemos com orçamento. Só imprimimos modelos que você tem direito de usar.</p></details>
+        <details><summary>Qual o prazo de produção?</summary><p>De 3 a 7 dias úteis para personagens da galeria. Personagens criados a partir de foto levam de 7 a 12 dias úteis, contando a aprovação da prévia. O prazo dos Correios conta depois do envio.</p></details>
+        <details><summary>De que material são os personagens?</summary><p>Usamos resina para personagens com muitos detalhes, como rosto, mãos e cabelo, e PLA para peças maiores. Todos saem lixados e pintados à mão.</p></details>
+        <details><summary>Como funciona o pagamento no cartão?</summary><p>Você paga no checkout seguro da InfinitePay, em até 12x. Os dados do cartão não passam pela nossa loja. No Pix você ganha desconto e o QR Code já sai com o valor certo.</p></details>
+        <details><summary>Vocês fazem personagens de desenhos famosos?</summary><p>Nossa galeria é de personagens originais da CreativeG, e criamos personagens personalizados a partir da sua foto ou desenho. Personagens de marcas registradas só com autorização de quem tem os direitos.</p></details>
+        <details><summary>Dá para deixar sem pintura?</summary><p>Sim, sai mais barato e mais rápido. Escreva "sem pintura" nas observações do pedido e ajustamos o valor pelo WhatsApp.</p></details>
         <details><summary>Posso trocar ou devolver?</summary><p>Produtos da vitrine podem ser devolvidos em até 7 dias após o recebimento. Peças personalizadas só são trocadas em caso de defeito.</p></details>
       </div>
     </div>
@@ -373,7 +384,7 @@ footer .socials { display: flex; gap: 1rem; }
 
 <footer>
   <div class="wrap">
-    <div><strong id="footBrand" style="color: var(--ink)">Camada Zero 3D</strong><br><span id="footCity">Impressão 3D sob demanda · São Paulo, SP</span></div>
+    <div><strong id="footBrand" style="color: var(--ink)">CreativeG</strong><br><span id="footCity">Personagens impressos em 3D</span></div>
     <div class="socials">
       <a id="lnkInsta" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
       <a id="lnkTiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a>
@@ -414,65 +425,74 @@ footer .socials { display: flex; gap: 1rem; }
    ===================================================================== */
 const LOJA = {
   demo: true,                        // false quando os dados forem reais (esconde a faixa de demonstração)
-  nome: "Camada Zero 3D",
+  nome: "CreativeG",
   cidade: "Sao Paulo",               // usada no Pix (sem acento, até 15 letras)
-  rodape: "Impressão 3D sob demanda · São Paulo, SP",
+  rodape: "Personagens impressos em 3D · enviamos para todo o Brasil",
   whatsapp: "",                      // só números com DDI e DDD, ex.: "5511987654321"
   pix: {
-    chave: "pix@camadazero3d.com.br",// sua chave Pix (e-mail, CPF/CNPJ, celular +55... ou aleatória)
-    titular: "Camada Zero 3D",       // nome do recebedor (até 25 letras)
+    chave: "sua-chave-pix@exemplo.com", // sua chave Pix (e-mail, CPF/CNPJ, celular +55... ou aleatória)
+    titular: "CreativeG",            // nome do recebedor (até 25 letras)
     desconto: 0.05                   // 5% de desconto no Pix (0 para desativar)
   },
-  freteGratisAcima: 199,
+  cartao: {
+    infinitepayHandle: "",           // sua InfiniteTag sem o $, ex.: "creativeg". Vazio = cartão pelo WhatsApp
+    parcelas: 12
+  },
+  freteGratisAcima: 249,
   fretes: [
     { id: "pac",      nome: "Correios PAC",    prazo: "5 a 9 dias úteis", valor: 22.90 },
     { id: "sedex",    nome: "Correios SEDEX",  prazo: "2 a 4 dias úteis", valor: 39.90 },
     { id: "retirada", nome: "Retirar em mãos", prazo: "combinamos pelo WhatsApp", valor: 0 }
   ],
-  cupons: { "LANCAMENTO10": 0.10 },  // código: desconto
+  cupons: { "CREATIVEG10": 0.10 },   // código: desconto
   instagram: "https://www.instagram.com/",
   tiktok: "https://www.tiktok.com/"
 };
 
-/* Cores de filamento disponíveis */
+/* Cores principais do personagem (roupa ou corpo) */
 const CORES = {
-  preto:    { nome: "Preto",        hex: "#23262B" },
-  branco:   { nome: "Branco",       hex: "#F2F2EE" },
-  cinza:    { nome: "Cinza",        hex: "#8E979F" },
-  vermelho: { nome: "Vermelho",     hex: "#D63A35" },
-  azul:     { nome: "Azul",         hex: "#2F6FD6" },
-  verde:    { nome: "Verde",        hex: "#3E9B5A" },
-  rosa:     { nome: "Rosa",         hex: "#E86BA5" },
-  dourado:  { nome: "Seda dourado", hex: "#C9A248" },
-  arcoiris: { nome: "Arco-íris",    hex: "rainbow" }
+  lilas:    { nome: "Lilás",     hex: "#A07BE0" },
+  menta:    { nome: "Menta",     hex: "#5CC9A7" },
+  laranja:  { nome: "Laranja",   hex: "#F28C38" },
+  azul:     { nome: "Azul",      hex: "#3F7FE0" },
+  rosa:     { nome: "Rosa",      hex: "#EE6FA8" },
+  amarelo:  { nome: "Amarelo",   hex: "#F2C230" },
+  vermelho: { nome: "Vermelho",  hex: "#DE4440" },
+  cinza:    { nome: "Cinza",     hex: "#8E979F" },
+  branco:   { nome: "Branco",    hex: "#F2F2EE" },
+  preto:    { nome: "Preto",     hex: "#2E3238" },
+  arcoiris: { nome: "Arco-íris", hex: "rainbow" }
 };
 
-/* Produtos. Para usar foto real, adicione  foto: "fotos/vaso.jpg"  */
+/* Personagens. Para usar foto real, adicione  foto: "fotos/dino.jpg"  */
 const PRODUTOS = [
-  { id: "dragao-articulado", nome: "Dragão Articulado", cat: "Colecionáveis", preco: 89.90, forma: "dragao", selo: "Mais vendido",
-    desc: "Impresso já montado, com todas as articulações móveis. Mexe, enrola e vira o centro das atenções na mesa.",
-    medidas: "42 cm de comprimento", material: "PLA seda", camada: "0,2 mm", tempo: "≈ 9 h", cores: ["arcoiris","dourado","azul","preto","verde"] },
-  { id: "vaso-espiral", nome: "Vaso Espiral Ondas", cat: "Decoração", preco: 59.90, forma: "vaso",
-    desc: "Parede ondulada impressa em espiral contínua. Para flores secas ou como peça decorativa (não vai água).",
-    medidas: "18 × 11 cm", material: "PLA seda", camada: "0,16 mm", tempo: "≈ 5 h", cores: ["dourado","branco","rosa","verde","preto"] },
-  { id: "luminaria-lua", nome: "Luminária Lua", cat: "Decoração", preco: 129.90, forma: "lua", selo: "Novo",
-    desc: "Lua com relevo de crateras e LED quente recarregável por USB. Fica linda como abajur de quarto.",
-    medidas: "Ø 15 cm", material: "PLA branco", camada: "0,12 mm", tempo: "≈ 14 h", cores: ["branco"] },
-  { id: "chaveiro-nome", nome: "Chaveiro com Nome", cat: "Personalizados", preco: 14.90, forma: "chaveiro", personalizar: "Nome no chaveiro", maxTexto: 12,
-    desc: "Chaveiro com o nome que você quiser, em duas cores. Ótimo para lembrancinha, mochila e presente.",
-    medidas: "6 × 2,5 cm", material: "PLA", camada: "0,2 mm", tempo: "≈ 40 min", cores: ["azul","vermelho","rosa","preto","verde","dourado"] },
-  { id: "suporte-celular", nome: "Suporte de Celular Dobrável", cat: "Utilidades", preco: 34.90, forma: "suporte",
-    desc: "Três ângulos de apoio, dobra e cabe no bolso. Funciona com capinha e com o carregador ligado.",
-    medidas: "10 × 7 cm", material: "PETG", camada: "0,2 mm", tempo: "≈ 1 h 30", cores: ["preto","branco","cinza","azul"] },
-  { id: "organizador-hex", nome: "Organizador de Mesa Hexagonal", cat: "Utilidades", preco: 49.90, forma: "hex",
-    desc: "Três módulos que se encaixam: canetas, clipes e celular. Monte do jeito que couber na sua mesa.",
-    medidas: "16 × 12 × 10 cm", material: "PLA", camada: "0,2 mm", tempo: "≈ 6 h", cores: ["branco","preto","verde","rosa"] },
-  { id: "vaso-robo", nome: "Vaso Robô para Suculenta", cat: "Decoração", preco: 44.90, forma: "robo",
-    desc: "Robozinho com furo de drenagem e pratinho. A suculenta vira o cabelo dele.",
-    medidas: "9 × 8 cm", material: "PLA", camada: "0,2 mm", tempo: "≈ 3 h", cores: ["cinza","branco","azul","vermelho"] },
-  { id: "suporte-controle", nome: "Suporte Duplo de Controle", cat: "Gamer", preco: 39.90, forma: "controle",
-    desc: "Guarda dois controles de videogame de pé, com espaço para o cabo. Serve em PlayStation e Xbox.",
-    medidas: "14 × 9 cm", material: "PLA", camada: "0,2 mm", tempo: "≈ 4 h", cores: ["preto","branco","azul","vermelho"] }
+  { id: "seu-chibi", nome: "Seu Personagem Chibi", cat: "Personalizados", preco: 149.90, forma: "chibi", selo: "Mais pedido",
+    personalizar: "Descreva você (cabelo, óculos, roupa)", maxTexto: 80, placeholder: "Ex.: cabelo cacheado castanho, óculos redondos",
+    desc: "Você em versão cartoon, com cabeção e olhos grandes. Depois do pedido, mande uma foto no WhatsApp e aprovamos a prévia juntos.",
+    medidas: "10 cm de altura", material: "Resina, pintado à mão", camada: "0,05 mm", tempo: "7 a 12 dias úteis", cores: ["azul","vermelho","menta","lilas","preto"] },
+  { id: "dino-bebe", nome: "Dino Bebê", cat: "Criaturas", preco: 79.90, forma: "dragao", selo: "Novo",
+    desc: "Dragãozinho com asinhas e chifres macios. O personagem mais fofo da galeria, ótimo para presente.",
+    medidas: "9 cm de altura", material: "PLA, pintado à mão", camada: "0,12 mm", tempo: "≈ 6 h de impressão", cores: ["menta","lilas","laranja","arcoiris"] },
+  { id: "gato-astronauta", nome: "Gato Astronauta", cat: "Criaturas", preco: 89.90, forma: "astro",
+    desc: "Gatinho com capacete de astronauta transparente. Fica lindo na mesa de quem trabalha ou estuda.",
+    medidas: "11 cm de altura", material: "Resina + capacete em PETG translúcido", camada: "0,05 mm", tempo: "≈ 8 h de impressão", cores: ["laranja","cinza","preto","branco"] },
+  { id: "coelho-ninja", nome: "Coelho Ninja", cat: "Criaturas", preco: 74.90, forma: "ninja",
+    desc: "Coelho de orelhas longas e faixa de ninja. Personagem original da CreativeG.",
+    medidas: "12 cm de altura", material: "PLA, pintado à mão", camada: "0,12 mm", tempo: "≈ 5 h de impressão", cores: ["branco","cinza","rosa","preto"] },
+  { id: "robo-bip", nome: "Robô Bip", cat: "Criaturas", preco: 69.90, forma: "robo",
+    desc: "Robozinho de tela no rosto e antena, com braços que giram. Encaixa em cima do monitor.",
+    medidas: "9 cm de altura", material: "PLA", camada: "0,16 mm", tempo: "≈ 4 h de impressão", cores: ["cinza","azul","amarelo","vermelho"] },
+  { id: "pet-cartoon", nome: "Seu Pet em Cartoon", cat: "Personalizados", preco: 119.90, forma: "pet",
+    personalizar: "Nome e raça do pet", maxTexto: 40, placeholder: "Ex.: Thor, vira-lata caramelo",
+    desc: "Miniatura do seu cachorro ou gato em estilo personagem animado. Mande fotos de frente e de lado no WhatsApp.",
+    medidas: "8 cm de altura", material: "Resina, pintado à mão", camada: "0,05 mm", tempo: "7 a 12 dias úteis", cores: ["laranja","amarelo","cinza","preto","branco"] },
+  { id: "chaveiro-personagem", nome: "Chaveiro Personagem com Nome", cat: "Chaveiros", preco: 24.90, forma: "chaveiro",
+    personalizar: "Nome no chaveiro", maxTexto: 12, placeholder: "Ex.: Ana", mostraTexto: true,
+    desc: "Mini personagem com uma plaquinha com o nome que você quiser. Lembrancinha que todo mundo pede.",
+    medidas: "6 × 4 cm", material: "PLA", camada: "0,12 mm", tempo: "≈ 1 h de impressão", cores: ["rosa","azul","lilas","menta","amarelo"] },
+  { id: "kit-turma", nome: "Kit Turma com 3", cat: "Kits", preco: 199.90, forma: "turma",
+    desc: "Dino Bebê, Seu Pet em Cartoon na versão cachorrinho e um Chibi da galeria, juntos numa base com o nome da turma.",
+    medidas: "Base de 18 × 7 cm", material: "PLA, pintado à mão", camada: "0,12 mm", tempo: "4 a 7 dias úteis", cores: ["menta","lilas","laranja"] }
 ];
 
 /* ===================================================================== */
@@ -493,95 +513,71 @@ function shade(hex, amt) {
   const r = Math.min(255, Math.max(0, (n >> 16) + amt)), g = Math.min(255, Math.max(0, ((n >> 8) & 255) + amt)), b = Math.min(255, Math.max(0, (n & 255) + amt));
   return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
 }
+function figure(kind, cx, b, s, fill, dark, light, lines) {
+  const f = v => v.toFixed(1);
+  const R = (x, y, w, h, rx, c, ex = "") => `<rect x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(h)}" rx="${f(rx)}" fill="${c}" ${ex}/>`;
+  const C = (x, y, r, c, ex = "") => `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="${c}" ${ex}/>`;
+  const E = (x, y, rx, ry, c, ex = "") => `<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(rx)}" ry="${f(ry)}" fill="${c}" ${ex}/>`;
+  const skin = "#F6CFAE", hairC = "#4A3326", ink = "#1E2328";
+  const hr = 40 * s, hy = b - 96 * s;
+  const human = kind === "chibi";
+  const headFill = human ? skin : fill;
+  let back = "", body = "", head = "", pre = "", post = "";
+  if (kind === "dragao") {
+    back += `<path d="M${f(cx - 20 * s)} ${f(b - 46 * s)} L${f(cx - 58 * s)} ${f(b - 80 * s)} L${f(cx - 46 * s)} ${f(b - 34 * s)} Z" fill="${light}"/><path d="M${f(cx + 20 * s)} ${f(b - 46 * s)} L${f(cx + 58 * s)} ${f(b - 80 * s)} L${f(cx + 46 * s)} ${f(b - 34 * s)} Z" fill="${light}"/>`;
+    back += `<path d="M${f(cx + 18 * s)} ${f(b - 10 * s)} Q ${f(cx + 56 * s)} ${f(b)} ${f(cx + 60 * s)} ${f(b - 26 * s)}" stroke="${fill}" stroke-width="${f(10 * s)}" fill="none" stroke-linecap="round"/>`;
+  }
+  if (kind === "pet") back += E(cx - hr * .8, hy - hr * .55, 11 * s, 20 * s, dark, `transform="rotate(-28 ${f(cx - hr * .8)} ${f(hy - hr * .55)})"`) + E(cx + hr * .8, hy - hr * .55, 11 * s, 20 * s, dark, `transform="rotate(28 ${f(cx + hr * .8)} ${f(hy - hr * .55)})"`);
+  if (kind === "astro") back += `<path d="M${f(cx - hr * .85)} ${f(hy - hr * .35)} L${f(cx - hr * .55)} ${f(hy - hr * 1.15)} L${f(cx - hr * .15)} ${f(hy - hr * .8)} Z" fill="${fill}"/><path d="M${f(cx + hr * .85)} ${f(hy - hr * .35)} L${f(cx + hr * .55)} ${f(hy - hr * 1.15)} L${f(cx + hr * .15)} ${f(hy - hr * .8)} Z" fill="${fill}"/>`;
+  if (kind === "ninja") back += E(cx - 15 * s, hy - hr - 8 * s, 9 * s, 20 * s, fill) + E(cx + 15 * s, hy - hr - 8 * s, 9 * s, 20 * s, fill) + E(cx - 15 * s, hy - hr - 6 * s, 4 * s, 13 * s, "#FFB3CF") + E(cx + 15 * s, hy - hr - 6 * s, 4 * s, 13 * s, "#FFB3CF");
+  if (kind === "robo") back += `<line x1="${f(cx)}" y1="${f(hy - hr * .8)}" x2="${f(cx)}" y2="${f(hy - hr * 1.3)}" stroke="${dark}" stroke-width="${f(3 * s)}"/>` + C(cx, hy - hr * 1.32, 6 * s, "#F2C230");
+  // corpo
+  body = E(cx, b, 44 * s, 6 * s, "#000", 'opacity=".12"') + E(cx - 17 * s, b - 4 * s, 12 * s, 7 * s, human ? ink : dark) + E(cx + 17 * s, b - 4 * s, 12 * s, 7 * s, human ? ink : dark)
+    + E(cx - 31 * s, b - 34 * s, 8 * s, 15 * s, human ? skin : fill) + E(cx + 31 * s, b - 34 * s, 8 * s, 15 * s, human ? skin : fill)
+    + R(cx - 28 * s, b - 58 * s, 56 * s, 54 * s, 20 * s, fill) + R(cx - 28 * s, b - 58 * s, 56 * s, 54 * s, 20 * s, lines)
+    + (human ? "" : E(cx, b - 28 * s, 15 * s, 13 * s, light, 'opacity=".55"'));
+  // cabeça
+  if (kind === "robo") head = R(cx - hr, hy - hr * .82, hr * 2, hr * 1.66, 13 * s, fill) + R(cx - hr, hy - hr * .82, hr * 2, hr * 1.66, 13 * s, lines) + R(cx - hr * .76, hy - hr * .5, hr * 1.52, hr * 1.02, 9 * s, ink);
+  else head = C(cx, hy, hr, headFill) + C(cx, hy, hr, lines);
+  const ey = hy + 3 * s, ex = 14 * s;
+  if (kind === "pet") pre += E(cx, ey + 13 * s, 13 * s, 9 * s, light) + E(cx, ey + 8 * s, 5 * s, 3.5 * s, ink);
+  if (kind === "ninja") pre += R(cx - hr, ey - 9 * s, hr * 2, 18 * s, 6 * s, "#2E3238") + `<path d="M${f(cx + hr - 2 * s)} ${f(ey - 4 * s)} l${f(18 * s)} ${f(-8 * s)} l${f(-4 * s)} ${f(12 * s)} Z" fill="#2E3238"/>`;
+  if (kind === "dragao") pre += `<path d="M${f(cx - 20 * s)} ${f(hy - hr * .82)} l${f(-4 * s)} ${f(-16 * s)} l${f(12 * s)} ${f(12 * s)} Z M${f(cx + 20 * s)} ${f(hy - hr * .82)} l${f(4 * s)} ${f(-16 * s)} l${f(-12 * s)} ${f(12 * s)} Z" fill="${light}"/>`;
+  const eyeC = kind === "robo" ? "#7FD3FF" : kind === "ninja" ? "#FFFFFF" : ink;
+  let face = `<g class="eyes">${E(cx - ex, ey, 5 * s, 7 * s, eyeC)}${E(cx + ex, ey, 5 * s, 7 * s, eyeC)}${kind === "robo" || kind === "ninja" ? "" : C(cx - ex + 2 * s, ey - 3 * s, 1.8 * s, "#fff") + C(cx + ex + 2 * s, ey - 3 * s, 1.8 * s, "#fff")}</g>`;
+  if (kind === "robo") face += R(cx - 11 * s, ey + 13 * s, 22 * s, 4 * s, 2 * s, "#7FD3FF");
+  else face += C(cx - 25 * s, ey + 11 * s, 5.5 * s, "#FF7FA8", 'opacity=".45"') + C(cx + 25 * s, ey + 11 * s, 5.5 * s, "#FF7FA8", 'opacity=".45"')
+    + (kind === "pet" ? "" : `<path d="M${f(cx - 5 * s)} ${f(ey + 13 * s)} q ${f(5 * s)} ${f(5 * s)} ${f(10 * s)} 0" stroke="${ink}" stroke-width="${f(2 * s)}" fill="none" stroke-linecap="round"/>`);
+  if (human) post += `<path d="M${f(cx - hr - 2 * s)} ${f(hy + 4 * s)} Q ${f(cx - hr)} ${f(hy - hr * 1.25)} ${f(cx)} ${f(hy - hr - 5 * s)} Q ${f(cx + hr)} ${f(hy - hr * 1.25)} ${f(cx + hr + 2 * s)} ${f(hy + 4 * s)} Q ${f(cx + hr * .7)} ${f(hy - hr * .55)} ${f(cx + 6 * s)} ${f(hy - hr * .45)} Q ${f(cx - hr * .2)} ${f(hy - hr * .2)} ${f(cx - hr * .55)} ${f(hy - hr * .5)} Q ${f(cx - hr * .9)} ${f(hy - hr * .3)} ${f(cx - hr - 2 * s)} ${f(hy + 4 * s)} Z" fill="${hairC}"/>`;
+  if (kind === "astro") post += C(cx, hy, hr + 9 * s, "#BFE6FF", `opacity=".25" stroke="#FFFFFF" stroke-width="${f(2.5 * s)}"`) + `<path d="M${f(cx - hr * .7)} ${f(hy - hr * .55)} q ${f(hr * .3)} ${f(-hr * .35)} ${f(hr * .7)} ${f(-hr * .4)}" stroke="#FFFFFF" stroke-width="${f(3 * s)}" fill="none" stroke-linecap="round" opacity=".8"/>`;
+  return `<g class="fig">${back}${body}${head}${pre}${face}${post}</g>`;
+}
 function art(p, corKey, texto) {
   const n = ++svgN;
   const c = CORES[corKey] || CORES[p.cores[0]];
-  const rainbow = c.hex === "rainbow";
-  const base = rainbow ? "#E86BA5" : c.hex;
-  const fill = rainbow ? `url(#rb${n})` : base;
-  const dark = rainbow ? "#7B3FA0" : shade(base, -45);
-  const light = rainbow ? "#FFE08A" : shade(base, 40);
+  const pal = hex => hex === "rainbow" ? { fill: `url(#rb${n})`, dark: "#7B3FA0", light: "#FFE08A" } : { fill: hex, dark: shade(hex, -50), light: shade(hex, 45) };
+  const { fill, dark, light } = pal(c.hex);
   const lines = `url(#ll${n})`;
   let shape = "";
-  const L = d => `<path d="${d}" fill="${fill}"/><path d="${d}" fill="${lines}"/>`;
-  switch (p.forma) {
-    case "vaso": {
-      let d = "M68 44";
-      for (let y = 44; y <= 160; y += 4) { const x = 68 - Math.sin((y - 44) / 116 * Math.PI) * 12 + Math.sin(y / 5) * 2.5; d += ` L${x.toFixed(1)} ${y}`; }
-      d += " Q100 178 132 160";
-      for (let y = 160; y >= 44; y -= 4) { const x = 132 + Math.sin((y - 44) / 116 * Math.PI) * 12 - Math.sin(y / 5) * 2.5; d += ` L${x.toFixed(1)} ${y}`; }
-      d += " Z";
-      shape = `<ellipse cx="100" cy="166" rx="44" ry="7" fill="#000" opacity=".12"/>${L(d)}<ellipse cx="100" cy="44" rx="32" ry="6" fill="${dark}"/>`;
-      break;
-    }
-    case "dragao": {
-      let segs = "";
-      for (let i = 0; i < 9; i++) {
-        const t = i / 8, x = 40 + t * 120, y = 120 + Math.sin(t * Math.PI * 1.6) * 26, w = 22 - t * 12, h = 30 - t * 16;
-        segs += `<rect x="${(x - w / 2).toFixed(1)}" y="${(y - h / 2).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="5" fill="${fill}" stroke="${dark}" stroke-width="1.5"/>`;
-      }
-      shape = `<ellipse cx="100" cy="160" rx="70" ry="7" fill="#000" opacity=".12"/>
-        <path d="M55 105 L80 60 L95 108 Z" fill="${fill}" opacity=".85" stroke="${dark}" stroke-width="1.5"/>
-        <path d="M80 112 L118 58 L122 116 Z" fill="${fill}" opacity=".85" stroke="${dark}" stroke-width="1.5"/>
-        ${segs}
-        <path d="M18 112 L42 98 L50 128 L24 130 Z" fill="${fill}" stroke="${dark}" stroke-width="1.5"/>
-        <circle cx="34" cy="110" r="3" fill="${dark}"/><path d="M40 98 L46 84 L48 100" fill="${dark}"/>`;
-      break;
-    }
-    case "lua": {
-      shape = `<circle cx="100" cy="98" r="72" fill="#FFD27A" opacity=".18"/>
-        <circle cx="100" cy="98" r="58" fill="${rainbow ? fill : "#F6EEDC"}"/><circle cx="100" cy="98" r="58" fill="${lines}"/>
-        <circle cx="80" cy="80" r="11" fill="#D9CBAE"/><circle cx="118" cy="110" r="15" fill="#D9CBAE"/><circle cx="92" cy="122" r="7" fill="#D9CBAE"/><circle cx="122" cy="76" r="6" fill="#D9CBAE"/>
-        <rect x="80" y="156" width="40" height="10" rx="3" fill="#3B3F45"/>`;
-      break;
-    }
-    case "chaveiro": {
-      const t = esc((texto || "Ana").slice(0, 12));
-      const fs = t.length > 7 ? 22 - (t.length - 7) * 1.4 : 26;
-      shape = `<path d="M100 40 C 70 40 60 60 70 74" fill="none" stroke="#9AA3AC" stroke-width="5"/>
-        <circle cx="100" cy="40" r="14" fill="none" stroke="#9AA3AC" stroke-width="5"/>
-        <rect x="28" y="72" width="144" height="62" rx="18" fill="${fill}"/><rect x="28" y="72" width="144" height="62" rx="18" fill="${lines}"/>
-        <circle cx="48" cy="103" r="7" style="fill:var(--sunk)"/>
-        <text x="110" y="${103 + fs * .36}" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="${fs}" fill="#FFFFFF" stroke="${dark}" stroke-width="1">${t}</text>`;
-      break;
-    }
-    case "suporte": {
-      shape = `<ellipse cx="100" cy="160" rx="62" ry="6" fill="#000" opacity=".12"/>
-        <rect x="88" y="34" width="56" height="104" rx="9" transform="rotate(18 116 86)" fill="#2B2F36"/>
-        <rect x="93" y="40" width="46" height="90" rx="5" transform="rotate(18 116 86)" fill="#5B8BD9" opacity=".8"/>
-        ${L("M44 156 L150 156 L150 146 L76 146 L118 70 L108 64 L58 146 L44 146 Z")}`;
-      break;
-    }
-    case "hex": {
-      const hx = (cx, cy, r) => Array.from({ length: 6 }, (_, i) => { const a = Math.PI / 3 * i + Math.PI / 6; return `${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`; }).join(" ");
-      shape = `<ellipse cx="100" cy="164" rx="66" ry="7" fill="#000" opacity=".12"/>
-        <rect x="58" y="44" width="5" height="44" fill="#E2B33C" transform="rotate(-8 60 66)"/><rect x="72" y="38" width="5" height="50" fill="#3E7BD6" transform="rotate(6 74 64)"/>
-        <polygon points="${hx(72, 110, 34)}" fill="${fill}"/><polygon points="${hx(72, 110, 34)}" fill="${lines}"/>
-        <polygon points="${hx(130, 124, 30)}" fill="${fill}"/><polygon points="${hx(130, 124, 30)}" fill="${lines}"/>
-        <polygon points="${hx(72, 110, 24)}" fill="${dark}" opacity=".5"/><polygon points="${hx(130, 124, 20)}" fill="${dark}" opacity=".5"/>`;
-      break;
-    }
-    case "robo": {
-      shape = `<ellipse cx="100" cy="164" rx="52" ry="7" fill="#000" opacity=".12"/>
-        <path d="M76 70 q-10 -26 10 -34 q2 18 4 34 Z" fill="#4FA060"/><path d="M98 66 q0 -32 18 -36 q-4 20 -6 38 Z" fill="#3E8B50"/><path d="M118 70 q14 -20 28 -14 q-12 8 -18 18 Z" fill="#5CB06C"/>
-        ${L("M58 68 H142 V150 Q142 160 132 160 H68 Q58 160 58 150 Z")}
-        <rect x="58" y="64" width="84" height="10" rx="3" fill="${dark}"/>
-        <circle cx="82" cy="104" r="11" fill="#1E2328"/><circle cx="118" cy="104" r="11" fill="#1E2328"/>
-        <circle cx="85" cy="101" r="3.5" fill="#7FD3FF"/><circle cx="121" cy="101" r="3.5" fill="#7FD3FF"/>
-        <rect x="84" y="128" width="32" height="7" rx="3.5" fill="${dark}"/>`;
-      break;
-    }
-    case "controle": {
-      shape = `<ellipse cx="100" cy="164" rx="66" ry="7" fill="#000" opacity=".12"/>
-        <path d="M52 70 q-12 0 -14 16 l-6 30 q-2 14 10 14 q8 0 12 -12 h22 q4 12 12 12 q12 0 10 -14 l-6 -30 q-2 -16 -14 -16 Z" fill="#2B2F36" transform="translate(4 -14)"/>
-        <path d="M112 70 q-12 0 -14 16 l-6 30 q-2 14 10 14 q8 0 12 -12 h22 q4 12 12 12 q12 0 10 -14 l-6 -30 q-2 -16 -14 -16 Z" fill="#3A3F48" transform="translate(4 -14)"/>
-        ${L("M36 118 H164 V160 H36 Z M48 118 V104 H90 V118 Z M108 118 V104 H152 V118 Z")}`;
-      break;
-    }
+  if (p.forma === "turma") {
+    const a = pal(c.hex), b2 = pal("#F28C38"), c2 = pal("#3F7FE0");
+    shape = R0(22, 166, 156, 16, "#3B3F45") +
+      figure("dragao", 52, 166, .58, a.fill, a.dark, a.light, lines) +
+      figure("chibi", 148, 166, .58, c2.fill, c2.dark, c2.light, lines) +
+      figure("pet", 100, 166, .66, b2.fill, b2.dark, b2.light, lines);
+  } else if (p.forma === "chaveiro") {
+    const t = esc((texto || "Ana").slice(0, 12));
+    const fs = t.length > 7 ? 20 - (t.length - 7) * 1.3 : 22;
+    shape = `<circle cx="100" cy="22" r="11" fill="none" stroke="#9AA3AC" stroke-width="4"/><line x1="100" y1="33" x2="100" y2="48" stroke="#9AA3AC" stroke-width="4"/>` +
+      figure("ninja", 100, 128, .78, fill, dark, light, lines) +
+      `<rect x="40" y="134" width="120" height="40" rx="12" fill="${fill}"/><rect x="40" y="134" width="120" height="40" rx="12" fill="${lines}"/>` +
+      `<text x="100" y="${(154 + fs * .36).toFixed(1)}" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="${fs}" fill="#FFFFFF" stroke="${dark}" stroke-width="1">${t}</text>`;
+  } else {
+    shape = figure(p.forma, 100, 176, .95, fill, dark, light, lines);
   }
   return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(p.nome)}">
     <defs>
-      <pattern id="ll${n}" width="4" height="3" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".13"/><rect y="1" width="4" height="1" fill="${light}" opacity=".18"/></pattern>
+      <pattern id="ll${n}" width="4" height="3" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".1"/><rect y="1" width="4" height="1" fill="#FFFFFF" opacity=".12"/></pattern>
       <linearGradient id="rb${n}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5E7E"/><stop offset=".3" stop-color="#FFB547"/><stop offset=".55" stop-color="#5ED67F"/><stop offset=".8" stop-color="#4E8CFF"/><stop offset="1" stop-color="#A45CFF"/></linearGradient>
     </defs>
     <rect width="200" height="200" style="fill:var(--sunk)"/>
@@ -589,6 +585,7 @@ function art(p, corKey, texto) {
     ${shape}
   </svg>`;
 }
+const R0 = (x, y, w, h, c) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="${c}"/>`;
 function media(p, cor, texto) {
   return p.foto ? `<img src="${esc(p.foto)}" alt="${esc(p.nome)}" loading="lazy">` : art(p, cor, texto);
 }
@@ -612,7 +609,7 @@ function renderGrid() {
         <h3>${esc(p.nome)}</h3>
         <span class="mono">${esc(p.material)} · ${esc(p.medidas)}</span>
         <div class="price-row">
-          <span class="price">${brl(p.preco)}${LOJA.pix.desconto ? `<small>${brl(p.preco * (1 - LOJA.pix.desconto))} no Pix</small>` : ""}</span>
+          <span class="price">${brl(p.preco)}<small>${LOJA.pix.desconto ? `${brl(p.preco * (1 - LOJA.pix.desconto))} no Pix · ` : ""}${LOJA.cartao.parcelas}x no cartão</small></span>
           <button class="btn btn-primary" type="button" data-open="${p.id}">Escolher</button>
         </div>
       </div>
@@ -636,20 +633,21 @@ function renderProduct() {
       <div class="pd-info">
         <span class="label">${esc(p.cat)}</span>
         <h2>${esc(p.nome)}</h2>
-        <div class="price">${brl(p.preco)}${LOJA.pix.desconto ? `<small>${brl(p.preco * (1 - LOJA.pix.desconto))} pagando no Pix</small>` : ""}</div>
+        <div class="price">${brl(p.preco)}<small>${LOJA.pix.desconto ? `${brl(p.preco * (1 - LOJA.pix.desconto))} no Pix · ` : ""}ou em até ${LOJA.cartao.parcelas}x no cartão</small></div>
         <p>${esc(p.desc)}</p>
         <dl class="specs">
           <dt>Medidas</dt><dd>${esc(p.medidas)}</dd>
           <dt>Material</dt><dd>${esc(p.material)}</dd>
-          <dt>Camada</dt><dd>${esc(p.camada)} · impressão ${esc(p.tempo)}</dd>
+          <dt>Camada</dt><dd>${esc(p.camada)}</dd>
+          <dt>Prazo</dt><dd>${esc(p.tempo)}</dd>
         </dl>
         <div class="field">
-          <label>Cor do filamento: <b id="corNome">${esc(CORES[sel.cor].nome)}</b></label>
+          <label>Cor: <b id="corNome">${esc(CORES[sel.cor].nome)}</b></label>
           <div class="swatches" role="radiogroup" aria-label="Cor">
             ${p.cores.map(k => `<button type="button" class="swatch" role="radio" aria-checked="${k === sel.cor}" aria-label="${esc(CORES[k].nome)}" data-cor="${k}" style="background:${CORES[k].hex === "rainbow" ? "conic-gradient(#FF5E7E,#FFB547,#5ED67F,#4E8CFF,#A45CFF,#FF5E7E)" : CORES[k].hex}"></button>`).join("")}
           </div>
         </div>
-        ${p.personalizar ? `<div class="field"><label for="txtPers">${esc(p.personalizar)} (até ${p.maxTexto} letras)</label><input id="txtPers" maxlength="${p.maxTexto}" placeholder="Ex.: Ana" value="${esc(sel.texto)}"></div>` : ""}
+        ${p.personalizar ? `<div class="field"><label for="txtPers">${esc(p.personalizar)} (até ${p.maxTexto} letras)</label><input id="txtPers" maxlength="${p.maxTexto}" placeholder="${esc(p.placeholder || "")}" value="${esc(sel.texto)}"></div>` : ""}
         <div class="pd-actions">
           <div class="qty" aria-label="Quantidade"><button type="button" data-q="-1" aria-label="Menos">−</button><span id="pdQ">${sel.qtd}</span><button type="button" data-q="1" aria-label="Mais">+</button></div>
           <button class="btn btn-primary" type="button" id="addCart" style="flex:1">Adicionar ao carrinho</button>
@@ -660,9 +658,9 @@ function renderProduct() {
 }
 
 /* ---------- Carrinho ---------- */
-let cart = store.get("cz3d-cart", []);
-let pedido = store.get("cz3d-checkout", { frete: LOJA.fretes[0].id, cupom: "" });
-const saveCart = () => { store.set("cz3d-cart", cart); store.set("cz3d-checkout", pedido); };
+let cart = store.get("cg-cart", []);
+let pedido = store.get("cg-checkout", { frete: LOJA.fretes[0].id, cupom: "" });
+const saveCart = () => { store.set("cg-cart", cart); store.set("cg-checkout", pedido); };
 
 function addToCart() {
   const p = byId(sel.id);
@@ -689,8 +687,8 @@ function updateCount() { $("#cartCount").textContent = cart.reduce((s, i) => s +
 function renderCart() {
   const body = $("#cartBody"), foot = $("#cartFoot");
   if (!cart.length) {
-    body.innerHTML = `<div class="empty"><p><strong>Seu carrinho está vazio.</strong></p><p>Escolha uma peça na vitrine e ela aparece aqui.</p></div>`;
-    foot.innerHTML = `<button class="btn btn-ghost btn-block" type="button" data-close>Ver produtos</button>`;
+    body.innerHTML = `<div class="empty"><p><strong>Seu carrinho está vazio.</strong></p><p>Escolha um personagem na galeria e ele aparece aqui.</p></div>`;
+    foot.innerHTML = `<button class="btn btn-ghost btn-block" type="button" data-close>Ver personagens</button>`;
     return;
   }
   const t = totals();
@@ -723,7 +721,7 @@ function renderCart() {
 }
 
 /* ---------- Checkout ---------- */
-let form = store.get("cz3d-form", { nome: "", fone: "", cep: "", endereco: "", obs: "", pag: "pix" });
+let form = store.get("cg-form", { nome: "", fone: "", cep: "", endereco: "", obs: "", pag: "pix" });
 function openCheckout() {
   closeCart();
   const precisaEndereco = pedido.frete !== "retirada";
@@ -744,7 +742,7 @@ function openCheckout() {
         <div class="field"><span style="font-size:.85rem;font-weight:500">Pagamento</span>
           <div class="pay-opts">
             <label class="pay-opt"><input type="radio" name="pag" value="pix" ${form.pag === "pix" ? "checked" : ""}><span><strong>Pix</strong>${LOJA.pix.desconto ? ` · ${LOJA.pix.desconto * 100}% off` : ""}<small>QR Code com o valor exato, na hora</small></span></label>
-            <label class="pay-opt"><input type="radio" name="pag" value="cartao" ${form.pag === "cartao" ? "checked" : ""}><span><strong>Cartão</strong><small>Enviamos o link de pagamento no WhatsApp</small></span></label>
+            <label class="pay-opt"><input type="radio" name="pag" value="cartao" ${form.pag === "cartao" ? "checked" : ""}><span><strong>Cartão de crédito</strong><small>Em até ${LOJA.cartao.parcelas}x no checkout seguro</small></span></label>
           </div>
         </div>
         <div id="coTotal" class="sum total"></div>
@@ -761,7 +759,7 @@ function submitCheckout(e) {
   e.preventDefault();
   const g = id => ($(id)?.value || "").trim();
   form = { nome: g("#coNome"), fone: g("#coFone"), cep: g("#coCep"), endereco: g("#coEnd"), obs: g("#coObs"), pag: $("input[name=pag]:checked").value };
-  store.set("cz3d-form", form);
+  store.set("cg-form", form);
   const precisaEndereco = pedido.frete !== "retirada";
   const faltando = [];
   if (!form.nome) faltando.push("nome");
@@ -781,7 +779,7 @@ function orderMessage(num, t) {
     t.pixDesc ? `Desconto Pix: −${brl(t.pixDesc)}` : null,
     `Entrega: ${t.f.nome} ${t.frete ? brl(t.frete) : "(grátis)"}`,
     `*Total: ${brl(t.total)}*`,
-    `Pagamento: ${form.pag === "pix" ? "Pix (vou enviar o comprovante)" : "Cartão (aguardo o link)"}`, "",
+    `Pagamento: ${form.pag === "pix" ? "Pix (vou enviar o comprovante)" : "Cartão de crédito"}`, "",
     `Nome: ${form.nome}`, `WhatsApp: ${form.fone}`,
     pedido.frete !== "retirada" ? `Endereço: ${form.endereco}, CEP ${form.cep}` : "Vou retirar em mãos",
     form.obs ? `Obs.: ${form.obs}` : null
@@ -795,7 +793,8 @@ function showResult() {
   const pix = form.pag === "pix" ? pixPayload(LOJA.pix.chave, LOJA.pix.titular, LOJA.cidade, t.total, num.replace(/\W/g, "")) : "";
   $("#modalContent").innerHTML = `
     <div class="checkout">
-      <div><p class="label">Pedido ${esc(num)}</p><h2>${form.pag === "pix" ? `Pague ${brl(t.total)} no Pix` : "Pedido pronto para enviar"}</h2></div>
+      <div><p class="label">Pedido ${esc(num)}</p><h2>Pague ${brl(t.total)} ${form.pag === "pix" ? "no Pix" : "no cartão"}</h2></div>
+      ${form.pag === "cartao" ? `<div id="cardBox" style="display:grid;gap:.6rem"><p style="margin:0">Gerando seu link de pagamento seguro…</p></div>` : ""}
       ${form.pag === "pix" ? `
       <div class="result">
         <div class="qr" id="qr" aria-label="QR Code Pix"></div>
@@ -807,7 +806,7 @@ function showResult() {
         </div>
       </div>` : ""}
       <div style="display:grid;gap:.6rem">
-        <p style="margin:0"><b>${form.pag === "pix" ? "Depois de pagar, " : ""}mande o pedido no WhatsApp</b>${form.pag === "pix" ? " com o comprovante" : " e enviamos o link do cartão"}. A produção começa assim que confirmarmos.</p>
+        <p style="margin:0"><b>Depois de pagar, mande o pedido no WhatsApp</b>${form.pag === "pix" ? " com o comprovante" : ""}. A produção começa assim que confirmarmos o pagamento.</p>
         ${wa ? `<a class="btn btn-primary" href="${wa}" target="_blank" rel="noopener">Enviar pedido no WhatsApp</a>` : `<p class="note">Número de WhatsApp da loja ainda não configurado. Copie a mensagem abaixo.</p>`}
         <div class="msg-preview" id="msgPrev">${esc(msg)}</div>
         <button class="btn btn-ghost" type="button" data-copy="#msgPrev">Copiar mensagem do pedido</button>
@@ -815,7 +814,42 @@ function showResult() {
     </div>`;
   if (pix && window.QRCode) new QRCode($("#qr"), { text: pix, width: 200, height: 200, correctLevel: QRCode.CorrectLevel.M });
   else if (pix) $("#qr").innerHTML = `<p class="mono" style="color:#333">QR indisponível, use o código ao lado.</p>`;
+  if (form.pag === "cartao") cardCheckout(num, t);
   cart = []; saveCart(); updateCount();
+}
+
+/* ---------- Cartão: checkout InfinitePay (link gerado com o valor do pedido) ---------- */
+async function cardCheckout(num, t) {
+  const box = $("#cardBox");
+  const fallback = motivo => { box.innerHTML = `<p class="note">${motivo} Envie o pedido no WhatsApp abaixo e mandamos o link para pagar no cartão em até ${LOJA.cartao.parcelas}x.</p>`; };
+  if (!LOJA.cartao.infinitepayHandle) { fallback("O checkout de cartão ainda não foi configurado nesta loja."); return; }
+  try {
+    const r = await fetch("https://api.checkout.infinitepay.io/links", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        handle: LOJA.cartao.infinitepayHandle, order_nsu: num,
+        redirect_url: location.href.split("#")[0].split("?")[0] + "?pedido=" + encodeURIComponent(num),
+        items: [{ quantity: 1, price: Math.round(t.total * 100), description: `Pedido ${num} - ${LOJA.nome}` }]
+      })
+    });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const d = await r.json();
+    const url = d.url || d.checkout_url || d.link;
+    if (!url) throw new Error("sem link");
+    box.innerHTML = `<a class="btn btn-primary" href="${esc(url)}" target="_blank" rel="noopener">Pagar ${brl(t.total)} no cartão</a><p class="mono" style="margin:0;color:var(--muted)">Pagamento processado pela InfinitePay, em até ${LOJA.cartao.parcelas}x. Os dados do cartão não passam pela loja.</p>`;
+  } catch (e) {
+    fallback("Não conseguimos abrir o checkout do cartão agora.");
+  }
+}
+function thanks() {
+  const q = new URLSearchParams(location.search);
+  const num = q.get("pedido") || q.get("order_nsu"); if (!num) return;
+  const rec = q.get("receipt_url");
+  $("#modalContent").innerHTML = `<div class="checkout"><div><p class="label">Pedido ${esc(num)}</p><h2>Obrigado pelo pedido!</h2></div>
+    <p style="margin:0">Assim que o pagamento for confirmado, seu personagem entra na fila da impressora. Mande o número do pedido no WhatsApp e avisamos cada etapa, com foto antes de enviar.</p>
+    ${rec && /^https:\/\//.test(rec) ? `<a class="btn btn-ghost" href="${esc(rec)}" target="_blank" rel="noopener">Ver comprovante</a>` : ""}
+    <button class="btn btn-primary" type="button" data-close>Voltar para a loja</button></div>`;
+  showModal();
 }
 
 /* ---------- Pix: BR Code "copia e cola" (padrão EMV do Banco Central) ---------- */
@@ -885,7 +919,7 @@ document.addEventListener("click", e => {
   }
 });
 document.addEventListener("input", e => {
-  if (e.target.id === "txtPers") { sel.texto = e.target.value; $("#pdImg").innerHTML = media(byId(sel.id), sel.cor, sel.texto); }
+  if (e.target.id === "txtPers") { sel.texto = e.target.value; if (byId(sel.id).mostraTexto) $("#pdImg").innerHTML = media(byId(sel.id), sel.cor, sel.texto); }
 });
 document.addEventListener("change", e => {
   if (e.target.id === "selFrete") { pedido.frete = e.target.value; saveCart(); renderCart(); }
@@ -899,44 +933,56 @@ window.addEventListener("hashchange", routeHash);
 function printer() {
   const cv = $("#printerCanvas"), ctx = cv.getContext("2d"), W = cv.width, H = cv.height;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const TOTAL = 180, layerH = 1.9, baseY = H * .84, cx = W / 2;
+  const TOTAL = 176, layerH = 2, baseY = H * .86, cx = W / 2;
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-  const radius = i => { const t = i / TOTAL; return 70 + Math.sin(t * Math.PI) * 55 - t * 10 + Math.sin(t * 22) * 4; };
-  let layer = 112, x = 0, dir = 1;
+  // perfil de um personagem: pés, corpo com braços, pescoço e cabeça grande
+  const radius = i => {
+    if (i < 8) return 64;
+    if (i < 70) return (i > 26 && i < 54 ? 82 : 56) - (i - 8) * .08;
+    if (i < 76) return 40;
+    const d = i - 124, R = 52;
+    return Math.max(0, Math.sqrt(Math.max(0, R * R - d * d)) * 2.05);
+  };
+  let layer = 150, x = 0, dir = 1, hold = 0;
   function frame() {
     const ink = css("--ink"), accent = css("--accent"), line = css("--line");
     ctx.clearRect(0, 0, W, H);
-    // mesa
     ctx.fillStyle = line; ctx.fillRect(W * .1, baseY, W * .8, 10);
-    // camadas impressas
     for (let i = 0; i < layer; i++) {
       const r = radius(i), y = baseY - i * layerH;
-      ctx.fillStyle = accent; ctx.globalAlpha = .55 + .45 * ((i % 2) ? 1 : .8);
+      ctx.fillStyle = accent; ctx.globalAlpha = (i % 2) ? 1 : .8;
       ctx.fillRect(cx - r, y - layerH, r * 2, layerH - .4);
     }
     ctx.globalAlpha = 1;
-    // camada atual parcial
-    const r = radius(layer), y = baseY - layer * layerH;
-    const nx = dir > 0 ? cx - r + x * 2 * r : cx + r - x * 2 * r;
-    ctx.fillStyle = accent;
-    if (dir > 0) ctx.fillRect(cx - r, y - layerH, nx - (cx - r), layerH - .4); else ctx.fillRect(nx, y - layerH, (cx + r) - nx, layerH - .4);
-    // eixo e bico
-    ctx.fillStyle = ink; ctx.globalAlpha = .9;
-    ctx.fillRect(W * .06, y - 112, W * .88, 8);
-    ctx.globalAlpha = 1;
-    ctx.fillRect(nx - 30, y - 120, 60, 54);
-    ctx.beginPath(); ctx.moveTo(nx - 12, y - 66); ctx.lineTo(nx + 12, y - 66); ctx.lineTo(nx + 3, y - layerH - 2); ctx.lineTo(nx - 3, y - layerH - 2); ctx.closePath(); ctx.fill();
-    ctx.fillStyle = accent; ctx.fillRect(nx - 22, y - 108, 44, 6);
-    // filamento entrando
-    ctx.strokeStyle = accent; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(nx, y - 120); ctx.quadraticCurveTo(nx + 40, y - 190, W * .8, 20); ctx.stroke();
-    $("#printerTag").textContent = `camada ${layer} / ${TOTAL} · ${(layer * 0.2).toFixed(1)} mm`;
+    // olhos e bochechas aparecem quando a cabeça passa da altura deles
+    if (layer > 132) {
+      const ey = baseY - 128 * layerH;
+      ctx.fillStyle = ink;
+      [-1, 1].forEach(sd => { ctx.beginPath(); ctx.ellipse(cx + sd * 34, ey, 9, 13, 0, 0, Math.PI * 2); ctx.fill(); });
+      ctx.fillStyle = "#FFFFFF";
+      [-1, 1].forEach(sd => { ctx.beginPath(); ctx.arc(cx + sd * 34 + 3, ey - 5, 3, 0, Math.PI * 2); ctx.fill(); });
+    }
+    if (layer < TOTAL) {
+      const r = radius(layer), y = baseY - layer * layerH;
+      const nx = dir > 0 ? cx - r + x * 2 * r : cx + r - x * 2 * r;
+      ctx.fillStyle = accent;
+      if (dir > 0) ctx.fillRect(cx - r, y - layerH, nx - (cx - r), layerH - .4); else ctx.fillRect(nx, y - layerH, (cx + r) - nx, layerH - .4);
+      const top = Math.max(60, y - 120);
+      ctx.fillStyle = ink; ctx.globalAlpha = .9; ctx.fillRect(W * .06, top + 8, W * .88, 8); ctx.globalAlpha = 1;
+      ctx.fillRect(nx - 30, top, 60, 54);
+      ctx.beginPath(); ctx.moveTo(nx - 12, top + 54); ctx.lineTo(nx + 12, top + 54); ctx.lineTo(nx + 3, y - layerH - 2); ctx.lineTo(nx - 3, y - layerH - 2); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = accent; ctx.fillRect(nx - 22, top + 12, 44, 6);
+      ctx.strokeStyle = accent; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(nx, top); ctx.quadraticCurveTo(nx + 40, top - 40, W * .8, 10); ctx.stroke();
+    }
+    $("#printerTag").textContent = layer >= TOTAL ? `pronto · ${(TOTAL * 0.2).toFixed(1)} mm de altura` : `camada ${layer} / ${TOTAL} · ${(layer * 0.2).toFixed(1)} mm`;
   }
-  if (reduce) { layer = 150; x = 1; frame(); return; }
+  if (reduce) { layer = TOTAL; frame(); return; }
   let last = 0;
   function tick(ts) {
     if (ts - last > 16) {
-      last = ts; x += 0.045;
-      if (x >= 1) { x = 0; dir *= -1; layer++; if (layer > TOTAL) layer = 20; }
+      last = ts;
+      if (layer >= TOTAL) { if (++hold > 150) { hold = 0; layer = 4; } }
+      else { x += radius(layer) > 0 ? 0.06 : 1; if (x >= 1) { x = 0; dir *= -1; layer++; } }
       frame();
     }
     requestAnimationFrame(tick);
@@ -951,12 +997,14 @@ function init() {
   $("#footCity").textContent = LOJA.rodape;
   $("#perkPix").textContent = LOJA.pix.desconto ? `${LOJA.pix.desconto * 100}% off pagando no Pix` : "QR Code na hora";
   $("#perkFrete").textContent = `acima de ${brl(LOJA.freteGratisAcima)}`;
+  $("#perkCartao").textContent = `em até ${LOJA.cartao.parcelas}x`;
   $("#lnkInsta").href = LOJA.instagram; $("#lnkTiktok").href = LOJA.tiktok;
   const waBase = LOJA.whatsapp ? `https://wa.me/${LOJA.whatsapp}` : "";
-  const waCustom = waBase ? `${waBase}?text=${encodeURIComponent(`Olá! Quero um orçamento de uma peça personalizada na ${LOJA.nome}.`)}` : "#encomenda";
+  const waCustom = waBase ? `${waBase}?text=${encodeURIComponent(`Olá! Quero criar um personagem personalizado na ${LOJA.nome}.`)}` : "#encomenda";
   $("#customBtn").href = waCustom; $("#lnkWhats").href = waBase || "#encomenda";
   if (!waBase) { $("#customBtn").removeAttribute("target"); $("#lnkWhats").removeAttribute("target"); }
-  renderFilters(); renderGrid(); updateCount(); printer(); routeHash();
+  if (!LOJA.demo) $("#demoBar").hidden = true;
+  renderFilters(); renderGrid(); updateCount(); printer(); routeHash(); thanks();
 }
 init();
 </script>
