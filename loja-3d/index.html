@@ -6,9 +6,9 @@
 <!--ARTIFACT-START-->
 <title>CreativeG</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Personagens animados impressos em 3D: bonecos, chibis personalizados e miniaturas cartoon. Pix ou cartão em até 12x.">
-<meta property="og:title" content="CreativeG · Personagens impressos em 3D">
-<meta property="og:description" content="Bonecos, chibis e miniaturas cartoon que saem da tela para a sua estante.">
+<meta name="description" content="Brinquedos articulados impressos em 3D: crocodilo, polvo, dragão com ovo e spinner espiral. R$ 50 cada, Pix ou cartão em até 12x.">
+<meta property="og:title" content="CreativeG · Brinquedos articulados em 3D">
+<meta property="og:description" content="Crocodilo, polvo, dragão e spinner que se mexem de verdade. R$ 50 cada.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,7 +139,10 @@ section.block { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
 .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
 .card-img { position: relative; aspect-ratio: 1 / 1; background: var(--sunk); cursor: pointer; border: 0; padding: 0; display: block; width: 100%; }
+.card-img { overflow: hidden; }
 .card-img svg, .card-img img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.card-img img { transition: transform .5s cubic-bezier(.3,.7,.3,1); }
+.card:hover .card-img img { transform: scale(1.06) rotate(-2deg); }
 .badge { position: absolute; top: .7rem; left: .7rem; background: var(--accent); color: var(--accent-ink); font-family: var(--f-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; padding: .25em .6em; border-radius: 4px; }
 .card-body { padding: 1rem 1rem 1.1rem; display: flex; flex-direction: column; gap: .4rem; flex: 1; }
 .card-body h3 { font-size: 1.15rem; font-weight: 700; }
@@ -278,7 +281,7 @@ footer .socials { display: flex; gap: 1rem; }
     </a>
     <nav class="nav" aria-label="Seções">
       <a href="#loja">Loja</a>
-      <a href="#encomenda">Crie o seu</a>
+      <a href="#encomenda">Outras cores</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#duvidas">Dúvidas</a>
     </nav>
@@ -293,17 +296,17 @@ footer .socials { display: flex; gap: 1rem; }
   <section class="hero">
     <div class="wrap">
       <div>
-        <p class="label">Personagens impressos em 3D · enviados para todo o Brasil</p>
-        <h1><span class="ln">Personagens que</span><span class="ln">saem da tela para</span><span class="ln">a sua <em>estante</em>.</span></h1>
-        <p class="lead" id="heroLead">Bonecos, chibis e miniaturas cartoon impressos camada por camada e pintados à mão. Escolha um da galeria ou peça o seu, feito a partir de uma foto.</p>
+        <p class="label">Brinquedos articulados em 3D · R$ 50 cada</p>
+        <h1><span class="ln">Brinquedos que</span><span class="ln">se mexem de</span><span class="ln"><em>verdade</em>.</span></h1>
+        <p class="lead" id="heroLead">Crocodilo, polvo, dragão e spinner impressos em 3D já montados, com articulações que balançam, enrolam e giram. Todos por R$ 50, no Pix ou no cartão.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#loja">Ver personagens</a>
-          <a class="btn btn-ghost" href="#encomenda">Criar meu personagem</a>
+          <a class="btn btn-primary" href="#loja">Ver brinquedos</a>
+          <a class="btn btn-ghost" href="#encomenda">Pedir outra cor</a>
         </div>
         <div class="spec-strip mono">
-          <span>Material <b>resina e PLA</b></span>
-          <span>Camada <b>0,05–0,2 mm</b></span>
-          <span>Acabamento <b>pintura à mão</b></span>
+          <span>Material <b>PLA e PLA seda</b></span>
+          <span>Articulações <b>impressas já montadas</b></span>
+          <span>Preço <b>R$ 50 cada</b></span>
         </div>
       </div>
       <div class="printer" aria-hidden="true">
@@ -318,7 +321,7 @@ footer .socials { display: flex; gap: 1rem; }
       <div class="perk"><strong>Pix com desconto</strong><span id="perkPix">5% off pagando no Pix</span></div>
       <div class="perk"><strong>Frete grátis</strong><span id="perkFrete">acima de R$ 199</span></div>
       <div class="perk"><strong>Cartão de crédito</strong><span id="perkCartao">em até 12x</span></div>
-      <div class="perk"><strong>Pronto em</strong><span>3 a 7 dias úteis</span></div>
+      <div class="perk"><strong>Pronto em</strong><span>2 a 5 dias úteis</span></div>
     </div>
   </div>
 
@@ -327,7 +330,7 @@ footer .socials { display: flex; gap: 1rem; }
       <div class="sec-head">
         <div>
           <p class="label">Galeria</p>
-          <h2>Escolha seu personagem</h2>
+          <h2>Escolha seu brinquedo</h2>
         </div>
         <div class="chips" id="filters" role="group" aria-label="Filtrar por categoria"></div>
       </div>
@@ -338,19 +341,18 @@ footer .socials { display: flex; gap: 1rem; }
   <section class="custom" id="encomenda">
     <div class="wrap">
       <div>
-        <p class="label" style="color: inherit; opacity: .7">Crie o seu</p>
-        <h2>Você, seu pet ou seu desenho em versão personagem.</h2>
-        <p>Mande uma foto ou um desenho. A gente modela em estilo cartoon, mostra uma prévia em 3D para você aprovar e só depois imprime e pinta.</p>
+        <p class="label" style="color: inherit; opacity: .7">Do seu jeito</p>
+        <h2>Quer outra cor, um kit ou lembrancinhas para festa?</h2>
+        <p>Fale com a gente no WhatsApp. Mostramos as cores de filamento disponíveis e montamos o pedido do jeito que você quiser.</p>
         <div class="hero-cta" style="margin-top: 1.5rem">
-          <a class="btn btn-primary" id="customBtn" href="#" target="_blank" rel="noopener">Criar meu personagem no WhatsApp</a>
+          <a class="btn btn-primary" id="customBtn" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
         </div>
       </div>
       <ul>
-        <li><span>Chibi de você ou do casal</span><span>a partir de R$ 149</span></li>
-        <li><span>Miniatura cartoon do seu pet</span><span>a partir de R$ 119</span></li>
-        <li><span>Personagem do seu desenho</span><span>sob orçamento</span></li>
-        <li><span>Topo de bolo com personagem</span><span>a partir de R$ 89</span></li>
-        <li><span>Mascote para empresa ou canal</span><span>acima de 10 un</span></li>
+        <li><span>Brinquedo em outra cor</span><span>consulte as cores</span></li>
+        <li><span>Kit com 3 brinquedos</span><span>frete grátis</span></li>
+        <li><span>Lembrancinhas para festa</span><span>a partir de 10 un</span></li>
+        <li><span>Revenda e lojas</span><span>sob orçamento</span></li>
       </ul>
     </div>
   </section>
@@ -359,9 +361,9 @@ footer .socials { display: flex; gap: 1rem; }
     <div class="wrap">
       <div class="sec-head"><div><p class="label">Do pedido à sua casa</p><h2>Como funciona</h2></div></div>
       <div class="steps">
-        <div class="step"><h3>Você escolhe</h3><p>O personagem, a cor e, se quiser, o nome ou os detalhes para personalizar.</p></div>
+        <div class="step"><h3>Você escolhe</h3><p>O brinquedo e a cor. Quer mais de um? Com 3 o frete sai grátis.</p></div>
         <div class="step"><h3>Paga no Pix ou cartão</h3><p>Pix com QR Code na hora e desconto, ou cartão de crédito em até 12x no checkout seguro.</p></div>
-        <div class="step"><h3>A gente imprime</h3><p>Seu personagem é impresso, lixado e pintado à mão. Mandamos foto antes de enviar.</p></div>
+        <div class="step"><h3>A gente imprime</h3><p>Seu brinquedo é impresso já montado e revisado articulação por articulação. Mandamos foto antes de enviar.</p></div>
         <div class="step"><h3>Chega até você</h3><p>Enviamos pelos Correios com código de rastreio, ou você retira em mãos.</p></div>
       </div>
     </div>
@@ -371,11 +373,12 @@ footer .socials { display: flex; gap: 1rem; }
     <div class="wrap">
       <div class="sec-head"><div><p class="label">Antes de comprar</p><h2>Dúvidas comuns</h2></div></div>
       <div class="faq">
-        <details><summary>Qual o prazo de produção?</summary><p>De 3 a 7 dias úteis para personagens da galeria. Personagens criados a partir de foto levam de 7 a 12 dias úteis, contando a aprovação da prévia. O prazo dos Correios conta depois do envio.</p></details>
-        <details><summary>De que material são os personagens?</summary><p>Usamos resina para personagens com muitos detalhes, como rosto, mãos e cabelo, e PLA para peças maiores. Todos saem lixados e pintados à mão.</p></details>
+        <details><summary>Qual o prazo de produção?</summary><p>De 2 a 5 dias úteis, dependendo da fila da impressora. O prazo dos Correios conta depois do envio.</p></details>
+        <details><summary>De que material são os brinquedos?</summary><p>PLA, um plástico feito de amido de milho, rígido e leve. O dragão e o spinner usam PLA seda, que tem brilho e muda de cor conforme a luz.</p></details>
+        <details><summary>É seguro para crianças?</summary><p>Indicado para maiores de 6 anos. Os brinquedos têm peças pequenas e não devem ir à boca.</p></details>
         <details><summary>Como funciona o pagamento no cartão?</summary><p>Você paga no checkout seguro da InfinitePay, em até 12x. Os dados do cartão não passam pela nossa loja. No Pix você ganha desconto e o QR Code já sai com o valor certo.</p></details>
-        <details><summary>Vocês fazem personagens de desenhos famosos?</summary><p>Nossa galeria é de personagens originais da CreativeG, e criamos personagens personalizados a partir da sua foto ou desenho. Personagens de marcas registradas só com autorização de quem tem os direitos.</p></details>
-        <details><summary>Dá para deixar sem pintura?</summary><p>Sim, sai mais barato e mais rápido. Escreva "sem pintura" nas observações do pedido e ajustamos o valor pelo WhatsApp.</p></details>
+        <details><summary>As articulações quebram?</summary><p>As juntas são impressas já encaixadas e aguentam o uso normal de brincar. Não force além do movimento natural. Se chegar com defeito, trocamos.</p></details>
+        <details><summary>Tem outras cores?</summary><p>Sim. Escolha uma das cores na página do brinquedo ou peça outra no WhatsApp antes de comprar.</p></details>
         <details><summary>Posso trocar ou devolver?</summary><p>Produtos da vitrine podem ser devolvidos em até 7 dias após o recebimento. Peças personalizadas só são trocadas em caso de defeito.</p></details>
       </div>
     </div>
@@ -384,7 +387,7 @@ footer .socials { display: flex; gap: 1rem; }
 
 <footer>
   <div class="wrap">
-    <div><strong id="footBrand" style="color: var(--ink)">CreativeG</strong><br><span id="footCity">Personagens impressos em 3D</span></div>
+    <div><strong id="footBrand" style="color: var(--ink)">CreativeG</strong><br><span id="footCity">Brinquedos articulados impressos em 3D</span></div>
     <div class="socials">
       <a id="lnkInsta" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
       <a id="lnkTiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a>
@@ -427,7 +430,7 @@ const LOJA = {
   demo: true,                        // false quando os dados forem reais (esconde a faixa de demonstração)
   nome: "CreativeG",
   cidade: "Sao Paulo",               // usada no Pix (sem acento, até 15 letras)
-  rodape: "Personagens impressos em 3D · enviamos para todo o Brasil",
+  rodape: "Brinquedos articulados impressos em 3D · enviamos para todo o Brasil",
   whatsapp: "",                      // só números com DDI e DDD, ex.: "5511987654321"
   pix: {
     chave: "sua-chave-pix@exemplo.com", // sua chave Pix (e-mail, CPF/CNPJ, celular +55... ou aleatória)
@@ -438,7 +441,7 @@ const LOJA = {
     infinitepayHandle: "",           // sua InfiniteTag sem o $, ex.: "creativeg". Vazio = cartão pelo WhatsApp
     parcelas: 12
   },
-  freteGratisAcima: 249,
+  freteGratisAcima: 150,
   fretes: [
     { id: "pac",      nome: "Correios PAC",    prazo: "5 a 9 dias úteis", valor: 22.90 },
     { id: "sedex",    nome: "Correios SEDEX",  prazo: "2 a 4 dias úteis", valor: 39.90 },
@@ -449,50 +452,32 @@ const LOJA = {
   tiktok: "https://www.tiktok.com/"
 };
 
-/* Cores principais do personagem (roupa ou corpo) */
+/* Cores. hex desenha a ilustração; bg (opcional) pinta a bolinha de escolha */
 const CORES = {
-  lilas:    { nome: "Lilás",     hex: "#A07BE0" },
-  menta:    { nome: "Menta",     hex: "#5CC9A7" },
-  laranja:  { nome: "Laranja",   hex: "#F28C38" },
-  azul:     { nome: "Azul",      hex: "#3F7FE0" },
-  rosa:     { nome: "Rosa",      hex: "#EE6FA8" },
-  amarelo:  { nome: "Amarelo",   hex: "#F2C230" },
-  vermelho: { nome: "Vermelho",  hex: "#DE4440" },
-  cinza:    { nome: "Cinza",     hex: "#8E979F" },
-  branco:   { nome: "Branco",    hex: "#F2F2EE" },
-  preto:    { nome: "Preto",     hex: "#2E3238" },
-  arcoiris: { nome: "Arco-íris", hex: "rainbow" }
+  verde:   { nome: "Verde",             hex: "#2DB34A" },
+  roxo:    { nome: "Roxo",              hex: "#5B2A6E" },
+  laranja: { nome: "Laranja",           hex: "#F29A1F" },
+  oliva:   { nome: "Verde-oliva",       hex: "#6E6A2E" },
+  cinza:   { nome: "Cinza",             hex: "#8E979F" },
+  rubi:    { nome: "Seda rubi e preto", hex: "#B3213F", bg: "linear-gradient(135deg, #E0324F 0 50%, #2A1A22 50%)" },
+  galaxia: { nome: "Seda roxo e azul",  hex: "#5A4FE0", bg: "linear-gradient(135deg, #D24BC0, #3D5BF0)" },
+  arcoiris:{ nome: "Arco-íris",         hex: "rainbow" }
 };
 
-/* Personagens. Para usar foto real, adicione  foto: "fotos/dino.jpg"  */
+/* Produtos. foto: caminho da imagem; sem foto, a loja desenha uma ilustração */
 const PRODUTOS = [
-  { id: "seu-chibi", nome: "Seu Personagem Chibi", cat: "Personalizados", preco: 149.90, forma: "chibi", selo: "Mais pedido",
-    personalizar: "Descreva você (cabelo, óculos, roupa)", maxTexto: 80, placeholder: "Ex.: cabelo cacheado castanho, óculos redondos",
-    desc: "Você em versão cartoon, com cabeção e olhos grandes. Depois do pedido, mande uma foto no WhatsApp e aprovamos a prévia juntos.",
-    medidas: "10 cm de altura", material: "Resina, pintado à mão", camada: "0,05 mm", tempo: "7 a 12 dias úteis", cores: ["azul","vermelho","menta","lilas","preto"] },
-  { id: "dino-bebe", nome: "Dino Bebê", cat: "Criaturas", preco: 79.90, forma: "dragao", selo: "Novo",
-    desc: "Dragãozinho com asinhas e chifres macios. O personagem mais fofo da galeria, ótimo para presente.",
-    medidas: "9 cm de altura", material: "PLA, pintado à mão", camada: "0,12 mm", tempo: "≈ 6 h de impressão", cores: ["menta","lilas","laranja","arcoiris"] },
-  { id: "gato-astronauta", nome: "Gato Astronauta", cat: "Criaturas", preco: 89.90, forma: "astro",
-    desc: "Gatinho com capacete de astronauta transparente. Fica lindo na mesa de quem trabalha ou estuda.",
-    medidas: "11 cm de altura", material: "Resina + capacete em PETG translúcido", camada: "0,05 mm", tempo: "≈ 8 h de impressão", cores: ["laranja","cinza","preto","branco"] },
-  { id: "coelho-ninja", nome: "Coelho Ninja", cat: "Criaturas", preco: 74.90, forma: "ninja",
-    desc: "Coelho de orelhas longas e faixa de ninja. Personagem original da CreativeG.",
-    medidas: "12 cm de altura", material: "PLA, pintado à mão", camada: "0,12 mm", tempo: "≈ 5 h de impressão", cores: ["branco","cinza","rosa","preto"] },
-  { id: "robo-bip", nome: "Robô Bip", cat: "Criaturas", preco: 69.90, forma: "robo",
-    desc: "Robozinho de tela no rosto e antena, com braços que giram. Encaixa em cima do monitor.",
-    medidas: "9 cm de altura", material: "PLA", camada: "0,16 mm", tempo: "≈ 4 h de impressão", cores: ["cinza","azul","amarelo","vermelho"] },
-  { id: "pet-cartoon", nome: "Seu Pet em Cartoon", cat: "Personalizados", preco: 119.90, forma: "pet",
-    personalizar: "Nome e raça do pet", maxTexto: 40, placeholder: "Ex.: Thor, vira-lata caramelo",
-    desc: "Miniatura do seu cachorro ou gato em estilo personagem animado. Mande fotos de frente e de lado no WhatsApp.",
-    medidas: "8 cm de altura", material: "Resina, pintado à mão", camada: "0,05 mm", tempo: "7 a 12 dias úteis", cores: ["laranja","amarelo","cinza","preto","branco"] },
-  { id: "chaveiro-personagem", nome: "Chaveiro Personagem com Nome", cat: "Chaveiros", preco: 24.90, forma: "chaveiro",
-    personalizar: "Nome no chaveiro", maxTexto: 12, placeholder: "Ex.: Ana", mostraTexto: true,
-    desc: "Mini personagem com uma plaquinha com o nome que você quiser. Lembrancinha que todo mundo pede.",
-    medidas: "6 × 4 cm", material: "PLA", camada: "0,12 mm", tempo: "≈ 1 h de impressão", cores: ["rosa","azul","lilas","menta","amarelo"] },
-  { id: "kit-turma", nome: "Kit Turma com 3", cat: "Kits", preco: 199.90, forma: "turma",
-    desc: "Dino Bebê, Seu Pet em Cartoon na versão cachorrinho e um Chibi da galeria, juntos numa base com o nome da turma.",
-    medidas: "Base de 18 × 7 cm", material: "PLA, pintado à mão", camada: "0,12 mm", tempo: "4 a 7 dias úteis", cores: ["menta","lilas","laranja"] }
+  { id: "dragao-ovo", nome: "Dragão de Cristal com Ovo", cat: "Articulados", preco: 50, foto: "fotos/dragao.jpg", selo: "Destaque",
+    desc: "Dragão todo articulado, com escamas de cristal, que se enrola e cabe dentro do ovo. Em PLA seda, que brilha e muda de tom com a luz.",
+    material: "PLA seda", cores: ["rubi", "galaxia", "arcoiris"] },
+  { id: "polvo", nome: "Polvo Articulado", cat: "Articulados", preco: 50, foto: "fotos/polvo.jpg",
+    desc: "Polvinho de tentáculos articulados que balançam e enrolam. Cabe na palma da mão e é difícil largar.",
+    material: "PLA", cores: ["roxo", "laranja", "oliva", "cinza"] },
+  { id: "crocodilo", nome: "Crocodilo Articulado", cat: "Articulados", preco: 50, foto: "fotos/crocodilo.jpg",
+    desc: "Crocodilo com o corpo em gomos que balança de um lado para o outro como se estivesse nadando, com patinhas e espinhos nas costas.",
+    material: "PLA", cores: ["verde"] },
+  { id: "spinner-espiral", nome: "Spinner Espiral", cat: "Fidget", preco: 50, foto: "fotos/spinner.jpg", selo: "Hipnotizante",
+    desc: "Passe o pino pelo centro e as camadas giram em espiral. Um fidget que prende o olhar, em PLA seda bicolor.",
+    material: "PLA seda", cores: ["galaxia"] }
 ];
 
 /* ===================================================================== */
@@ -607,7 +592,7 @@ function renderGrid() {
       <div class="card-body">
         <span class="label">${esc(p.cat)}</span>
         <h3>${esc(p.nome)}</h3>
-        <span class="mono">${esc(p.material)} · ${esc(p.medidas)}</span>
+        <span class="mono">${[p.material, p.medidas].filter(Boolean).map(esc).join(" · ")}</span>
         <div class="price-row">
           <span class="price">${brl(p.preco)}<small>${LOJA.pix.desconto ? `${brl(p.preco * (1 - LOJA.pix.desconto))} no Pix · ` : ""}${LOJA.cartao.parcelas}x no cartão</small></span>
           <button class="btn btn-primary" type="button" data-open="${p.id}">Escolher</button>
@@ -636,15 +621,12 @@ function renderProduct() {
         <div class="price">${brl(p.preco)}<small>${LOJA.pix.desconto ? `${brl(p.preco * (1 - LOJA.pix.desconto))} no Pix · ` : ""}ou em até ${LOJA.cartao.parcelas}x no cartão</small></div>
         <p>${esc(p.desc)}</p>
         <dl class="specs">
-          <dt>Medidas</dt><dd>${esc(p.medidas)}</dd>
-          <dt>Material</dt><dd>${esc(p.material)}</dd>
-          <dt>Camada</dt><dd>${esc(p.camada)}</dd>
-          <dt>Prazo</dt><dd>${esc(p.tempo)}</dd>
+          ${[["Medidas", p.medidas], ["Material", p.material], ["Camada", p.camada], ["Prazo", p.tempo || "2 a 5 dias úteis + envio"], ["Cores", p.cores.length > 1 ? `${p.cores.length} opções, outras pelo WhatsApp` : "outras pelo WhatsApp"]].filter(r => r[1]).map(r => `<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join("")}
         </dl>
         <div class="field">
           <label>Cor: <b id="corNome">${esc(CORES[sel.cor].nome)}</b></label>
           <div class="swatches" role="radiogroup" aria-label="Cor">
-            ${p.cores.map(k => `<button type="button" class="swatch" role="radio" aria-checked="${k === sel.cor}" aria-label="${esc(CORES[k].nome)}" data-cor="${k}" style="background:${CORES[k].hex === "rainbow" ? "conic-gradient(#FF5E7E,#FFB547,#5ED67F,#4E8CFF,#A45CFF,#FF5E7E)" : CORES[k].hex}"></button>`).join("")}
+            ${p.cores.map(k => `<button type="button" class="swatch" role="radio" aria-checked="${k === sel.cor}" aria-label="${esc(CORES[k].nome)}" data-cor="${k}" style="background:${CORES[k].bg || (CORES[k].hex === "rainbow" ? "conic-gradient(#FF5E7E,#FFB547,#5ED67F,#4E8CFF,#A45CFF,#FF5E7E)" : CORES[k].hex)}"></button>`).join("")}
           </div>
         </div>
         ${p.personalizar ? `<div class="field"><label for="txtPers">${esc(p.personalizar)} (até ${p.maxTexto} letras)</label><input id="txtPers" maxlength="${p.maxTexto}" placeholder="${esc(p.placeholder || "")}" value="${esc(sel.texto)}"></div>` : ""}
@@ -687,8 +669,8 @@ function updateCount() { $("#cartCount").textContent = cart.reduce((s, i) => s +
 function renderCart() {
   const body = $("#cartBody"), foot = $("#cartFoot");
   if (!cart.length) {
-    body.innerHTML = `<div class="empty"><p><strong>Seu carrinho está vazio.</strong></p><p>Escolha um personagem na galeria e ele aparece aqui.</p></div>`;
-    foot.innerHTML = `<button class="btn btn-ghost btn-block" type="button" data-close>Ver personagens</button>`;
+    body.innerHTML = `<div class="empty"><p><strong>Seu carrinho está vazio.</strong></p><p>Escolha um brinquedo na galeria e ele aparece aqui.</p></div>`;
+    foot.innerHTML = `<button class="btn btn-ghost btn-block" type="button" data-close>Ver brinquedos</button>`;
     return;
   }
   const t = totals();
@@ -846,7 +828,7 @@ function thanks() {
   const num = q.get("pedido") || q.get("order_nsu"); if (!num) return;
   const rec = q.get("receipt_url");
   $("#modalContent").innerHTML = `<div class="checkout"><div><p class="label">Pedido ${esc(num)}</p><h2>Obrigado pelo pedido!</h2></div>
-    <p style="margin:0">Assim que o pagamento for confirmado, seu personagem entra na fila da impressora. Mande o número do pedido no WhatsApp e avisamos cada etapa, com foto antes de enviar.</p>
+    <p style="margin:0">Assim que o pagamento for confirmado, seu brinquedo entra na fila da impressora. Mande o número do pedido no WhatsApp e avisamos cada etapa, com foto antes de enviar.</p>
     ${rec && /^https:\/\//.test(rec) ? `<a class="btn btn-ghost" href="${esc(rec)}" target="_blank" rel="noopener">Ver comprovante</a>` : ""}
     <button class="btn btn-primary" type="button" data-close>Voltar para a loja</button></div>`;
   showModal();
@@ -1000,7 +982,7 @@ function init() {
   $("#perkCartao").textContent = `em até ${LOJA.cartao.parcelas}x`;
   $("#lnkInsta").href = LOJA.instagram; $("#lnkTiktok").href = LOJA.tiktok;
   const waBase = LOJA.whatsapp ? `https://wa.me/${LOJA.whatsapp}` : "";
-  const waCustom = waBase ? `${waBase}?text=${encodeURIComponent(`Olá! Quero criar um personagem personalizado na ${LOJA.nome}.`)}` : "#encomenda";
+  const waCustom = waBase ? `${waBase}?text=${encodeURIComponent(`Olá! Vi os brinquedos da ${LOJA.nome} e quero saber das cores disponíveis.`)}` : "#encomenda";
   $("#customBtn").href = waCustom; $("#lnkWhats").href = waBase || "#encomenda";
   if (!waBase) { $("#customBtn").removeAttribute("target"); $("#lnkWhats").removeAttribute("target"); }
   if (!LOJA.demo) $("#demoBar").hidden = true;
