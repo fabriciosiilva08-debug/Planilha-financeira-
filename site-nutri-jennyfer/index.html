@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nutri Jennyfer Lopes</title>
+<meta name="description" content="Nutricionista Jennyfer Lopes — acompanhamento nutricional individualizado, online e presencial. Agende sua consulta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f2; --surface:#ffffff; --soft:#eef2ea; --ink:#1f2a22; --muted:#5d6b61;
+  --brand:#4f7a5a; --brand-dark:#3b5f45; --accent:#d98b6a; --line:#e3e6de;
+  --radius:20px; --shadow:0 10px 30px rgba(31,42,34,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151a16; --surface:#1d241f; --soft:#222b24; --ink:#eef1ec; --muted:#a8b4aa;
+    --brand:#7fae8a; --brand-dark:#9cc4a5; --accent:#e5a284; --line:#2e3830; --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151a16; --surface:#1d241f; --soft:#222b24; --ink:#eef1ec; --muted:#a8b4aa;
+  --brand:#7fae8a; --brand-dark:#9cc4a5; --accent:#e5a284; --line:#2e3830; --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 1.5rem;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .2s,background .2s;border:2px solid transparent}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-dark);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--brand);color:var(--brand)}
+.btn-ghost:hover{background:var(--soft)}
+section{padding:96px 0}
+.section-head{max-width:640px;margin-bottom:48px}
+.section-head h2{font-size:clamp(1.9rem,4vw,2.6rem);margin:.4rem 0 .8rem}
+.section-head p{color:var(--muted)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:Fraunces,serif;font-size:1.35rem;font-weight:600;text-decoration:none}
+.logo span{color:var(--brand)}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{text-decoration:none;font-weight:500;color:var(--muted)}
+.nav ul a:hover{color:var(--ink)}
+.menu-btn{display:none;background:none;border:0;color:var(--ink);cursor:pointer}
+@media (max-width:860px){
+  .nav ul{position:absolute;top:72px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  .nav ul.open{display:flex}
+  .nav ul a{display:block;padding:14px 16px}
+  .menu-btn{display:block}
+  .nav .btn{display:none}
+}
+
+/* hero */
+.hero{padding:72px 0 96px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,5.5vw,3.9rem);margin:.6rem 0 1.2rem}
+.hero h1 em{font-style:italic;color:var(--brand)}
+.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:520px;margin-bottom:2rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:24px;margin-top:2.5rem;color:var(--muted);font-size:.92rem}
+.hero-badges strong{display:block;font-family:Fraunces,serif;font-size:1.5rem;color:var(--ink)}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:220px 220px var(--radius) var(--radius);background:linear-gradient(160deg,#cfdcc9,#9fbc9f 55%,#6f9a78);box-shadow:var(--shadow);display:grid;place-items:center;overflow:hidden}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .ph{color:#fff;text-align:center;font-size:.9rem;opacity:.9;padding:24px}
+.float-card{position:absolute;left:-28px;bottom:40px;background:var(--surface);padding:14px 18px;border-radius:16px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;font-size:.9rem}
+.float-card .dot{width:40px;height:40px;border-radius:50%;background:var(--soft);display:grid;place-items:center;color:var(--brand)}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .portrait{max-width:380px;margin-inline:auto;width:100%}
+  .float-card{left:8px}
+}
+
+/* about */
+.about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.about-img{aspect-ratio:1;border-radius:var(--radius);background:linear-gradient(135deg,#f3d9c9,#d98b6a);display:grid;place-items:center;color:#fff;overflow:hidden}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about p{color:var(--muted);margin-bottom:1rem}
+.checks{list-style:none;display:grid;gap:10px;margin:1.5rem 0}
+.checks li{display:flex;gap:10px;align-items:flex-start}
+.checks svg{flex:none;margin-top:3px;color:var(--brand)}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+
+/* services */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.icon{width:52px;height:52px;border-radius:14px;background:var(--soft);display:grid;place-items:center;color:var(--brand);margin-bottom:18px}
+.card h3{font-size:1.25rem;margin-bottom:.5rem}
+.card p{color:var(--muted);font-size:.95rem}
+
+/* steps */
+.steps-sec{background:var(--soft)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{position:relative;padding-top:56px}
+.step::before{counter-increment:s;content:"0" counter(s);position:absolute;top:0;font-family:Fraunces,serif;font-size:2.2rem;color:var(--accent)}
+.step h3{font-size:1.15rem;margin-bottom:.4rem}
+.step p{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column}
+.plan.featured{border:2px solid var(--brand);position:relative}
+.plan.featured::after{content:"Mais procurado";position:absolute;top:-13px;left:32px;background:var(--brand);color:#fff;font-size:.75rem;font-weight:600;padding:4px 12px;border-radius:999px}
+.plan h3{font-size:1.4rem}
+.plan .tag{color:var(--muted);font-size:.92rem;margin:.3rem 0 1.2rem}
+.plan ul{list-style:none;display:grid;gap:10px;margin-bottom:1.8rem;flex:1}
+.plan li{display:flex;gap:10px;font-size:.95rem}
+.plan li::before{content:"✓";color:var(--brand);font-weight:700}
+
+/* testimonials */
+.testi{background:var(--surface)}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.quote{background:var(--bg);border-radius:var(--radius);padding:28px;border:1px solid var(--line)}
+.quote p{font-family:Fraunces,serif;font-size:1.1rem;margin-bottom:1rem}
+.quote span{color:var(--muted);font-size:.9rem}
+.stars{color:var(--accent);margin-bottom:.6rem;letter-spacing:2px}
+
+/* faq */
+.faq{max-width:780px}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--brand);font-size:1.4rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:.8rem}
+
+/* cta */
+.cta{padding:0 0 96px}
+.cta-box{background:var(--brand);color:#fff;border-radius:32px;padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-box h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:1rem}
+.cta-box p{opacity:.9;max-width:560px;margin:0 auto 2rem}
+.cta-box .btn{background:#fff;color:var(--brand-dark)}
+.cta-box .btn:hover{transform:translateY(-2px)}
+.cta-box::before,.cta-box::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}
+.cta-box::before{width:300px;height:300px;top:-120px;left:-80px}
+.cta-box::after{width:220px;height:220px;bottom:-90px;right:-40px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:48px 0 32px;color:var(--muted);font-size:.92rem}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.foot h4{color:var(--ink);margin-bottom:.8rem;font-size:.95rem}
+.foot a{text-decoration:none;display:block;margin-bottom:6px}
+.foot a:hover{color:var(--brand)}
+.copy{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+.wa-float{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,.4);z-index:60;transition:transform .2s}
+.wa-float:hover{transform:scale(1.08)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!--
+  ===== DADOS PARA PREENCHER =====
+  Edite o objeto CONFIG no final do arquivo (WhatsApp, Instagram, CRN, endereço, e-mail).
+  Fotos: coloque "foto-hero.jpg" e "foto-sobre.jpg" nesta pasta e elas aparecem automaticamente.
+-->
+
+<header>
+  <nav class="wrap nav">
+    <a href="#inicio" class="logo">Jennyfer <span>Lopes</span></a>
+    <ul id="menu">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Atendimentos</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#consultas">Consultas</a></li>
+      <li><a href="#duvidas">Dúvidas</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary js-wa">Agendar consulta</a>
+    <button class="menu-btn" aria-label="Abrir menu" onclick="document.getElementById('menu').classList.toggle('open')">
+      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h20M4 14h20M4 20h20"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="inicio">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">Nutricionista · <span class="js-crn">CRN 0000</span></span>
+        <h1>Comer bem pode ser <em>leve</em>, prático e do seu jeito.</h1>
+        <p class="lead">Acompanhamento nutricional individualizado, sem dietas restritivas e sem terrorismo nutricional. Um plano feito para a sua rotina, seus objetivos e a sua história com a comida.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-primary js-wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+            Agendar pelo WhatsApp
+          </a>
+          <a href="#consultas" class="btn btn-ghost">Ver consultas</a>
+        </div>
+        <div class="hero-badges">
+          <div><strong>Online</strong>para todo o Brasil</div>
+          <div><strong>Presencial</strong>com hora marcada</div>
+          <div><strong>Suporte</strong>entre as consultas</div>
+        </div>
+      </div>
+      <div class="reveal" style="position:relative">
+        <div class="portrait">
+          <img src="foto-hero.jpg" alt="Nutricionista Jennyfer Lopes" onerror="this.remove()">
+          <div class="ph">Adicione aqui a foto profissional<br>(foto-hero.jpg)</div>
+        </div>
+        <div class="float-card">
+          <div class="dot"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.3-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.3 6C19 16.6 12 21 12 21Z"/></svg></div>
+          <div><strong>Cuidado individualizado</strong><br><span style="color:var(--muted)">plano feito só para você</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="about" id="sobre">
+    <div class="wrap about-grid">
+      <div class="about-img reveal">
+        <img src="foto-sobre.jpg" alt="Jennyfer Lopes em atendimento" onerror="this.remove()">
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Prazer, eu sou a Jennyfer</span>
+        <h2 style="font-size:clamp(1.9rem,4vw,2.6rem);margin:.4rem 0 1rem">Nutrição que cabe na vida real</h2>
+        <p>Sou nutricionista e acredito que a alimentação saudável não precisa ser chata, cara ou cheia de proibições. Meu trabalho é te ajudar a fazer escolhas conscientes, entender o seu corpo e construir hábitos que se mantêm a longo prazo.</p>
+        <p>Cada atendimento começa por ouvir você: sua rotina, preferências, exames e objetivos. A partir disso, monto uma estratégia personalizada e acompanho de perto a sua evolução.</p>
+        <ul class="checks">
+          <li><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg>Planos alimentares flexíveis e com receitas práticas</li>
+          <li><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg>Abordagem baseada em ciência e sem dietas da moda</li>
+          <li><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg>Acompanhamento próximo pelo WhatsApp</li>
+        </ul>
+        <a href="#" class="btn btn-primary js-ig">Me acompanhe no Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Atendimentos</span>
+        <h2>Como posso te ajudar</h2>
+        <p>Estratégias nutricionais para diferentes objetivos e fases da vida.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="icon"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M7 21h10"/></svg></div>
+          <h3>Emagrecimento saudável</h3>
+          <p>Perda de peso sustentável, sem efeito sanfona e sem passar fome.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6.5 6.5h11M4 10h16M6.5 17.5h11M4 14h16"/></svg></div>
+          <h3>Hipertrofia e performance</h3>
+          <p>Alimentação estratégica para ganho de massa muscular e mais energia nos treinos.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.3-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.3 6C19 16.6 12 21 12 21Z"/></svg></div>
+          <h3>Saúde da mulher</h3>
+          <p>Nutrição para TPM, SOP, gestação, pós-parto, menopausa e equilíbrio hormonal.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2c3 4 6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 3-7 6-11Z"/></svg></div>
+          <h3>Reeducação alimentar</h3>
+          <p>Melhore sua relação com a comida e construa hábitos para a vida toda.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="steps-sec" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Passo a passo</span>
+        <h2>Como funciona o acompanhamento</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><h3>Agendamento</h3><p>Você entra em contato pelo WhatsApp e escolhe o melhor dia e horário.</p></div>
+        <div class="step reveal"><h3>Consulta</h3><p>Anamnese completa, avaliação corporal e análise de exames e rotina.</p></div>
+        <div class="step reveal"><h3>Plano personalizado</h3><p>Você recebe seu plano alimentar, lista de compras e receitas práticas.</p></div>
+        <div class="step reveal"><h3>Acompanhamento</h3><p>Suporte entre as consultas e retornos para ajustar a estratégia.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTAS -->
+  <section id="consultas">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Consultas</span>
+        <h2>Escolha o formato ideal para você</h2>
+        <p>Valores e disponibilidade são informados pelo WhatsApp.</p>
+      </div>
+      <div class="plans">
+        <div class="plan reveal">
+          <h3>Consulta online</h3>
+          <p class="tag">Por videochamada, de onde você estiver</p>
+          <ul>
+            <li>Consulta individual por vídeo</li>
+            <li>Plano alimentar personalizado</li>
+            <li>Material de apoio e receitas</li>
+            <li>Suporte via WhatsApp</li>
+          </ul>
+          <a href="#" class="btn btn-ghost js-wa" data-msg="Olá, Jennyfer! Gostaria de agendar uma consulta online.">Agendar online</a>
+        </div>
+        <div class="plan featured reveal">
+          <h3>Acompanhamento completo</h3>
+          <p class="tag">Consulta + retornos para resultados consistentes</p>
+          <ul>
+            <li>Primeira consulta + retornos</li>
+            <li>Ajustes contínuos no plano</li>
+            <li>Avaliação da evolução</li>
+            <li>Suporte prioritário via WhatsApp</li>
+          </ul>
+          <a href="#" class="btn btn-primary js-wa" data-msg="Olá, Jennyfer! Tenho interesse no acompanhamento completo.">Quero o acompanhamento</a>
+        </div>
+        <div class="plan reveal">
+          <h3>Consulta presencial</h3>
+          <p class="tag js-addr-short">No consultório, com hora marcada</p>
+          <ul>
+            <li>Avaliação física completa</li>
+            <li>Plano alimentar personalizado</li>
+            <li>Material de apoio e receitas</li>
+            <li>Suporte via WhatsApp</li>
+          </ul>
+          <a href="#" class="btn btn-ghost js-wa" data-msg="Olá, Jennyfer! Gostaria de agendar uma consulta presencial.">Agendar presencial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS (substitua pelos depoimentos reais das pacientes, com autorização) -->
+  <section class="testi">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Depoimentos</span>
+        <h2>O que dizem as pacientes</h2>
+      </div>
+      <div class="quotes">
+        <div class="quote reveal"><div class="stars">★★★★★</div><p>“Espaço para o depoimento de uma paciente.”</p><span>— Nome da paciente</span></div>
+        <div class="quote reveal"><div class="stars">★★★★★</div><p>“Espaço para o depoimento de uma paciente.”</p><span>— Nome da paciente</span></div>
+        <div class="quote reveal"><div class="stars">★★★★★</div><p>“Espaço para o depoimento de uma paciente.”</p><span>— Nome da paciente</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="duvidas">
+    <div class="wrap faq">
+      <div class="section-head reveal">
+        <span class="eyebrow">Dúvidas frequentes</span>
+        <h2>Perguntas comuns</h2>
+      </div>
+      <details><summary>A consulta online funciona tão bem quanto a presencial?</summary><p>Sim. Na consulta online fazemos toda a anamnese, analisamos seus exames e orientamos como fazer as medidas em casa. Você recebe o mesmo plano personalizado e o mesmo suporte.</p></details>
+      <details><summary>Vou precisar cortar tudo o que eu gosto?</summary><p>Não! O plano é construído com base nas suas preferências. A ideia é equilíbrio, não restrição.</p></details>
+      <details><summary>Preciso levar exames?</summary><p>Se você tiver exames recentes (até 6 meses), envie antes ou leve na consulta. Se não tiver, posso solicitar os que forem necessários.</p></details>
+      <details><summary>Como funciona o suporte pelo WhatsApp?</summary><p>Entre as consultas, você pode tirar dúvidas sobre o plano, substituições e situações do dia a dia pelo WhatsApp.</p></details>
+      <details><summary>Atende por plano de saúde?</summary><p>Os atendimentos são particulares. Emito recibo para que você possa solicitar reembolso, conforme as regras do seu plano.</p></details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2>Pronta para cuidar de você?</h2>
+        <p>Dê o primeiro passo hoje. Me chama no WhatsApp e vamos montar juntas a estratégia ideal para o seu objetivo.</p>
+        <a href="#" class="btn js-wa">Agendar minha consulta</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#inicio" class="logo" style="color:var(--ink)">Jennyfer <span>Lopes</span></a>
+        <p style="margin-top:.6rem">Nutricionista · <span class="js-crn">CRN 0000</span><br>Atendimento online e presencial.</p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <a href="#" class="js-wa">WhatsApp</a>
+        <a href="#" class="js-ig">Instagram</a>
+        <a href="#" class="js-mail">E-mail</a>
+      </div>
+      <div>
+        <h4>Consultório</h4>
+        <p class="js-addr">Endereço do consultório</p>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="ano"></span> Jennyfer Lopes Nutrição. Todos os direitos reservados.</span>
+      <span>As informações deste site não substituem uma consulta individual.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="wa-float js-wa" aria-label="Fale pelo WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+</a>
+
+<script>
+/* ===== EDITE AQUI ===== */
+const CONFIG = {
+  whatsapp: "5500000000000",          // DDI + DDD + número, só dígitos. Ex: 5511999998888
+  instagram: "https://instagram.com/", // link do perfil
+  email: "contato@exemplo.com",
+  crn: "CRN-0 00000",
+  endereco: "Rua Exemplo, 123 — Bairro, Cidade/UF",
+  mensagemPadrao: "Olá, Jennyfer! Vim pelo site e gostaria de agendar uma consulta."
+};
+/* ====================== */
+
+document.querySelectorAll(".js-wa").forEach(a=>{
+  const msg = a.dataset.msg || CONFIG.mensagemPadrao;
+  a.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  a.target = "_blank"; a.rel = "noopener";
+});
+document.querySelectorAll(".js-ig").forEach(a=>{a.href=CONFIG.instagram;a.target="_blank";a.rel="noopener"});
+document.querySelectorAll(".js-mail").forEach(a=>a.href="mailto:"+CONFIG.email);
+document.querySelectorAll(".js-crn").forEach(e=>e.textContent=CONFIG.crn);
+document.querySelectorAll(".js-addr").forEach(e=>e.textContent=CONFIG.endereco);
+document.querySelectorAll("#menu a").forEach(a=>a.addEventListener("click",()=>document.getElementById("menu").classList.remove("open")));
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
