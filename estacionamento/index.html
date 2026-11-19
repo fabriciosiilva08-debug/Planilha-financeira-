@@ -135,8 +135,8 @@ main{min-width:0;padding-block:24px 40px;padding-left:max(16px,env(safe-area-ins
   main{padding-block:16px calc(92px + env(safe-area-inset-bottom,0px))}
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g2{grid-template-columns:1fr}
-  .bottom{display:grid;grid-template-columns:repeat(7,1fr);position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:6px max(4px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-left,0px));z-index:40}
-  .bottom button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--muted);padding:4px 0;cursor:pointer;min-width:0}
+  .bottom{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:6px max(4px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-left,0px));z-index:40}
+  .bottom button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;overflow:hidden;text-overflow:ellipsis;font-weight:600;color:var(--muted);padding:4px 0;cursor:pointer;min-width:0}
   .bottom button svg{width:22px;height:22px}
   .bottom button[aria-current="page"]{color:var(--accent)}
   .mtop{display:flex}
@@ -161,7 +161,7 @@ main{min-width:0;padding-block:24px 40px;padding-left:max(16px,env(safe-area-ins
   </aside>
   <main>
     <div class="wrap">
-      <div class="mtop"><div class="brand-mark">P</div><div class="brand-name" id="brandNameM">Pátio &amp; Lavagem</div></div>
+      <div class="mtop"><div class="brand-mark">P</div><div class="brand-name" id="brandNameM">Pátio &amp; Lavagem</div><button type="button" class="btn sm" data-go="ajustes" style="margin-left:auto">Ajustes</button></div>
       <div id="view"></div>
     </div>
   </main>
@@ -206,7 +206,7 @@ const DEFAULT_CFG = {
 const S = {
   view:'painel', cfg:{...DEFAULT_CFG}, dbOk:null, loaded:{}, slow:false, canWrite:true,
   dia:today(), mes:today().slice(0,7),
-  agenda:[], patio:[], saidasHoje:[], caixa:[], caixaHoje:[], estoque:[], equipe:[]
+  agenda:[], patio:[], saidasHoje:[], caixa:[], caixaHoje:[], estoque:[], equipe:[], mensalistas:[], pagMensal:[]
 };
 let DB = null;
 const subs = {};
@@ -215,6 +215,7 @@ const VIEWS = [
   ['painel','Painel','<path d="M3 13h8V3H3zm10 8h8V11h-8zM3 21h8v-6H3zm10-18v6h8V3z"/>'],
   ['agenda','Agenda','<path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 8h14v10H5z"/>'],
   ['patio','Pátio','<path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11v7h-2v-2H7v2H5zm2.5 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm9 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM7.2 10h9.6l-1-3H8.2z"/>'],
+  ['mensal','Mensalistas','<path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2v10h16V7zm2 2h6v2H6zm0 4h4v2H6zm10.5-4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-3 7c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5z"/>'],
   ['caixa','Caixa','<path d="M3 6h18v12H3zm2 2v8h14V8zm7 1.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"/>'],
   ['estoque','Estoque','<path d="M12 2l9 5v10l-9 5-9-5V7zm0 2.3L5.5 8 12 11.6 18.5 8zM5 9.7v6.1l6 3.4v-6.2zm14 0l-6 3.3v6.2l6-3.4z"/>'],
   ['equipe','Equipe','<path d="M9 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm8 1a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM1 20c0-3.3 3.6-6 8-6s8 2.7 8 6zm17 0c0-1.7-.6-3.2-1.7-4.4 3 .3 5.7 2 5.7 4.4z"/>'],
@@ -225,7 +226,7 @@ const icon = p => `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="tru
 function renderNav(){
   const h = VIEWS.map(([k,l,p]) => `<button type="button" data-go="${k}" ${S.view===k?'aria-current="page"':''}>${icon(p)}<span>${l}</span></button>`).join('');
   document.getElementById('nav').innerHTML = h;
-  document.getElementById('bottom').innerHTML = h;
+  document.getElementById('bottom').innerHTML = VIEWS.filter(v=>v[0]!=='ajustes').map(([k,l,p]) => `<button type="button" data-go="${k}" ${S.view===k?'aria-current="page"':''}>${icon(p)}<span>${k==='mensal'?'Mensais':l}</span></button>`).join('');
   document.getElementById('brandName').textContent = S.cfg.nome || 'Pátio & Lavagem';
   document.getElementById('brandNameM').textContent = S.cfg.nome || 'Pátio & Lavagem';
   const sync = document.getElementById('sync');
@@ -302,6 +303,18 @@ function precoRotativo(minutos){
 }
 const minutosDesde = iso => (Date.now() - new Date(iso).getTime())/60000;
 const sum = (arr,f=x=>x.valor) => arr.reduce((a,x)=>a+(+f(x)||0),0);
+const mensalDaPlaca = p => { p=plateFmt(p); return p ? S.mensalistas.find(m => m.ativo!==false && String(m.placas||'').split(/[,\s]+/).map(plateFmt).includes(p)) : null; };
+function statusMensal(m, ref){
+  ref = ref || S.mes;
+  const pg = S.pagMensal.find(x => x.mensalistaId===m.id && x.ref===ref);
+  if (pg) return {st:'pago', pg};
+  if (m.ativo===false) return {st:'inativo'};
+  if ((m.desde||'0000-00') > ref) return {st:'fora'};
+  const cur = today().slice(0,7), dia = +today().slice(8,10);
+  if (ref < cur || (ref===cur && dia > (+m.vencimento||10))) return {st:'atrasado'};
+  return {st:'aberto'};
+}
+const mensaisAbertas = () => S.mensalistas.map(m=>({m, s:statusMensal(m, today().slice(0,7))})).filter(x=>x.s.st==='aberto'||x.s.st==='atrasado');
 const listaCompras = () => S.estoque.filter(i => (+i.qtd||0) <= (+i.minimo||0) || i.comprar);
 
 async function lancar(id, data){ // id determinístico evita lançamento duplicado
@@ -337,6 +350,8 @@ async function boot(){
   if (S.mes !== today().slice(0,7)) listen('caixaHoje', DB.collection('caixa').where('data','==',today()));
   listen('estoque', DB.collection('estoque'));
   listen('equipe', DB.collection('equipe'));
+  listen('mensalistas', DB.collection('mensalistas'));
+  listen('pagMensal', DB.collection('caixa').where('categoria','==','Mensalista'));
   try { const u = await window.claude.use('user'); if (u){ const c = await u.can('data.write'); if (c===false) S.canWrite=false; render(); } } catch(e){}
   setInterval(()=>{ if (S.view==='patio' || S.view==='painel') render(); }, 60000);
 }
@@ -390,7 +405,8 @@ function vPainel(){
           ${barRow('Entradas', entMes, Math.max(entMes,saiMes), '')}
           ${barRow('Saídas', saiMes, Math.max(entMes,saiMes), 'out')}
         </div>
-        <p style="margin:12px 0 0">Saldo: <b class="${entMes-saiMes>=0?'pos':'neg'} tabnum">${fmt(entMes-saiMes)}</b></p></section>
+        <p style="margin:12px 0 0">Saldo: <b class="${entMes-saiMes>=0?'pos':'neg'} tabnum">${fmt(entMes-saiMes)}</b></p>
+        ${(() => { const ab = mensaisAbertas(); const at = ab.filter(x=>x.s.st==='atrasado').length; return ab.length ? `<p style="margin:6px 0 0">Mensalidades a receber: <b class="tabnum">${ab.length} · ${fmt(sum(ab,x=>x.m.valor))}</b>${at?` <span class="pill p-baixo">${at} atrasada${at>1?'s':''}</span>`:''} <button class="btn sm" data-go="mensal">Ver</button></p>` : ''; })()}</section>
       <section class="panel"><h2>Precisa comprar <button class="btn sm" data-go="estoque">Ver estoque</button></h2>
         <div class="list">${compras.length ? compras.map(i=>`<div class="row"><div class="main"><div class="t">${esc(i.nome)}</div><div class="s">Tem ${esc(i.qtd)} ${esc(i.unidade||'')} · mínimo ${esc(i.minimo)}</div></div><span class="pill p-baixo">Comprar</span></div>`).join('') : emptyBox('Estoque em dia','Nenhum produto abaixo do mínimo.')}</div></section>
     </div>`;
@@ -408,8 +424,8 @@ function rowLavagem(a){
   return `<div class="row"><div class="time">${esc(a.hora)}</div>${a.placa?plate(a.placa):''}<div class="main"><div class="t">${esc(a.servico)} · ${fmt(a.valor)}</div><div class="s">${esc(a.cliente||'Sem nome')}${a.modelo?' · '+esc(a.modelo):''}${a.telefone?' · '+esc(a.telefone):''}${a.status==='concluido'&&a.forma?' · pago no '+esc(a.forma):''}</div></div><span class="pill p-${a.status}">${ST[a.status]||a.status}</span><div class="btns">${b.join('')}</div></div>`;
 }
 function rowPatio(r){
-  const m = minutosDesde(r.entrada);
-  return `<div class="row">${plate(r.placa)}<div class="main"><div class="t">${esc([r.modelo,r.cor].filter(Boolean).join(' · ') || 'Veículo')}</div><div class="s">Entrou ${hm(r.entrada)}${r.entrada.slice(0,10)!==today()?' de '+dShort(r.entrada.slice(0,10)):''} · ${dur(m)} · até agora ${fmt(precoRotativo(m))}</div></div><div class="btns"><button class="btn sm primary" data-act="saida" data-id="${r.id}" ${W()}>Registrar saída</button></div></div>`;
+  const m = minutosDesde(r.entrada); const ms = mensalDaPlaca(r.placa);
+  return `<div class="row">${plate(r.placa)}<div class="main"><div class="t">${esc([r.modelo,r.cor].filter(Boolean).join(' · ') || 'Veículo')}${ms?' <span class="pill p-agendado">Mensalista</span>':''}</div><div class="s">Entrou ${hm(r.entrada)}${r.entrada.slice(0,10)!==today()?' de '+dShort(r.entrada.slice(0,10)):''} · ${dur(m)} · ${ms? esc(ms.nome) : 'até agora '+fmt(precoRotativo(m))}</div></div><div class="btns"><button class="btn sm primary" data-act="saida" data-id="${r.id}" ${W()}>Registrar saída</button></div></div>`;
 }
 
 function vAgenda(){
@@ -460,6 +476,34 @@ function vCaixa(){
       <section class="panel"><h2>Para onde foi</h2><div class="bars">${cs.length? cs.map(([k,v])=>barRow(esc(k),v,mx,'out')).join('') : '<p class="muted">Sem despesas neste mês.</p>'}</div></section>
     </div>
     <section class="panel"><h2>Lançamentos <span class="muted" style="font-size:15px;font-family:var(--f-body)">${lista.length}</span></h2><div class="list">${lista.length ? lista.map(x=>`<div class="row"><div class="main"><div class="t">${esc(x.descricao||x.categoria)}</div><div class="s">${dShort(x.data)} · ${esc(x.categoria||'')}${x.forma?' · '+esc(x.forma):''}</div></div><div class="amt ${x.tipo==='entrada'?'pos':'neg'}">${x.tipo==='entrada'?'+':'−'} ${fmt(x.valor)}</div><div class="btns"><button class="btn sm danger" data-act="apagarCaixa" data-id="${x.id}" ${W()} aria-label="Apagar lançamento">Apagar</button></div></div>`).join('') : emptyBox('Nada lançado neste mês','Lavagens concluídas e saídas do pátio entram aqui sozinhas. Despesas você lança em “+ Despesa”.')}</div></section>`;
+}
+
+function vMensal(){
+  const ms = [...S.mensalistas].sort((a,b)=>(a.ativo===false)-(b.ativo===false) || a.nome.localeCompare(b.nome));
+  const ativos = ms.filter(m=>m.ativo!==false);
+  const lst = ativos.map(m=>({m, s:statusMensal(m)}));
+  const pagos = lst.filter(x=>x.s.st==='pago'), abertos = lst.filter(x=>x.s.st==='aberto'||x.s.st==='atrasado'), atras = lst.filter(x=>x.s.st==='atrasado');
+  const LB = {pago:['Pago','p-concluido'], aberto:['Em aberto','p-agendado'], atrasado:['Atrasado','p-baixo'], inativo:['Inativo','p-cancelado'], fora:['Começa depois','p-cancelado']};
+  return head('Mensalistas', `${ativos.length} ativo${ativos.length===1?'':'s'} · mensalidades de ${esc(mLabel(S.mes))}`, `<button class="btn primary" data-act="novoMensal" ${W()}>+ Mensalista</button>`)
+  + banner()
+  + `<div class="toolbar"><label class="muted" for="mesPick">Mês</label><input type="month" id="mesPick" value="${S.mes}"></div>
+    <div class="kpis">
+      <div class="kpi"><div class="lbl">Previsto no mês</div><div class="val">${fmt(sum(lst,x=>x.s.st==='fora'?0:x.m.valor))}</div></div>
+      <div class="kpi"><div class="lbl">Recebido</div><div class="val pos">${fmt(sum(pagos,x=>x.s.pg.valor))}</div><div class="sub">${pagos.length} pagos</div></div>
+      <div class="kpi"><div class="lbl">A receber</div><div class="val">${fmt(sum(abertos,x=>x.m.valor))}</div><div class="sub">${abertos.length} em aberto</div></div>
+      <div class="kpi"><div class="lbl">Atrasados</div><div class="val ${atras.length?'neg':''}">${atras.length}</div><div class="sub">${fmt(sum(atras,x=>x.m.valor))}</div></div>
+    </div>
+    <section class="panel"><h2>Clientes mensais</h2><div class="list">${ms.length ? ms.map(m => { const s = statusMensal(m); const [l,c] = LB[s.st];
+      const placas = String(m.placas||'').split(/[,\s]+/).map(plateFmt).filter(Boolean);
+      const tel = String(m.telefone||'').replace(/\D/g,'');
+      const b = [];
+      if (s.st==='aberto'||s.st==='atrasado') b.push(`<button class="btn sm primary" data-act="receberMensal" data-id="${m.id}" ${W()}>Receber</button>`);
+      if (s.st==='pago') b.push(`<button class="btn sm" data-act="estornarMensal" data-id="${m.id}" ${W()}>Desfazer</button>`);
+      if (tel.length>=10 && (s.st==='aberto'||s.st==='atrasado')) b.push(`<a class="btn sm" target="_blank" rel="noopener" href="https://wa.me/55${tel.replace(/^55(?=\d{10,11}$)/,'')}?text=${encodeURIComponent(`Olá ${m.nome}! Lembrete da mensalidade do estacionamento de ${mLabel(S.mes)}: ${fmt(m.valor)}, vencimento dia ${m.vencimento||10}.`)}">Cobrar no WhatsApp</a>`);
+      b.push(`<button class="btn sm" data-act="editarMensal" data-id="${m.id}" ${W()}>Editar</button>`);
+      return `<div class="row">${placas.length?plate(placas[0]):''}<div class="main"><div class="t">${esc(m.nome)} · ${fmt(m.valor)}</div><div class="s">${esc(m.plano||'Mensal')} · vence dia ${esc(m.vencimento||10)}${placas.length>1?' · placas '+esc(placas.join(', ')):''}${m.telefone?' · '+esc(m.telefone):''}${s.pg?' · pago '+dShort(s.pg.data)+(s.pg.forma?' no '+esc(s.pg.forma):''):''}</div></div><span class="pill ${c}">${l}</span><div class="btns">${b.join('')}</div></div>`;
+    }).join('') : emptyBox('Nenhum mensalista cadastrado','Cadastre o cliente com a placa do carro. Quando ele sair do pátio, o app não cobra a hora.')}</div></section>
+    <p class="muted">A placa do mensalista é reconhecida no pátio: a saída sai sem cobrança. A mensalidade recebida entra no Caixa na categoria “Mensalista”.</p>`;
 }
 
 function vEstoque(){
@@ -513,12 +557,13 @@ function vAjustes(){
     </div>
     <div class="err" id="cfgErr" hidden></div>
     <div class="actions" style="margin-top:14px"><button class="btn primary" type="submit" ${W()}>Salvar ajustes</button></div></form>
+    <section class="panel"><h2>Seus dados</h2><p style="margin:0 0 10px">Baixe uma cópia para guardar ou abrir no Excel/Google Planilhas.</p><div class="actions"><button class="btn" data-act="exportCsv">Baixar caixa do mês (planilha)</button><button class="btn" data-act="exportJson">Baixar backup completo</button></div></section>
     <section class="panel"><h2>Como dar acesso ao funcionário</h2><p style="margin:0">No menu Compartilhar desta página, convide o funcionário como <b>Colaborador</b>. Ele poderá registrar entradas, saídas e lavagens. Quem for só <b>Leitor</b> vê os dados mas não altera nada.</p></section>`;
 }
 
 function render(){
   renderNav();
-  const v = {painel:vPainel, agenda:vAgenda, patio:vPatio, caixa:vCaixa, estoque:vEstoque, equipe:vEquipe, ajustes:vAjustes}[S.view] || vPainel;
+  const v = {painel:vPainel, agenda:vAgenda, patio:vPatio, mensal:vMensal, caixa:vCaixa, estoque:vEstoque, equipe:vEquipe, ajustes:vAjustes}[S.view] || vPainel;
   const el = document.getElementById('view');
   const ae = document.activeElement, aid = ae && ae.id;
   if (S.view==='ajustes' && el.querySelector('#cfgForm') && el.contains(ae)) return; // não apagar o que está sendo digitado
@@ -591,11 +636,11 @@ const ACT = {
       const [h,m]=v.hora.split(':').map(Number); const d=new Date(); d.setHours(h,m,0,0); if (d>new Date()) d.setDate(d.getDate()-1);
       await write(()=>DB.collection('rotativo').add({placa:v.placa, modelo:v.modelo, cor:v.cor, entrada:d.toISOString(), status:'patio'}));
       if (v.lavar) await write(()=>DB.collection('agenda').add({data:today(), hora:nowHM(), servico:v.servico, valor:precoServ(v.servico), placa:v.placa, modelo:[v.modelo,v.cor].filter(Boolean).join(' '), cliente:'', telefone:'', status:'agendado'}));
-      toast(`${v.placa} entrou no pátio`);
+      const ms = mensalDaPlaca(v.placa); toast(ms ? `${v.placa} entrou · mensalista ${ms.nome}` : `${v.placa} entrou no pátio`);
     }}),
-  saida: id => { const r=byId(S.patio,id); const m=minutosDesde(r.entrada); const val=precoRotativo(m);
+  saida: id => { const r=byId(S.patio,id); const m=minutosDesde(r.entrada); const ms=mensalDaPlaca(r.placa); const val=ms?0:precoRotativo(m);
     openForm({title:'Saída do pátio', submit:'Receber e liberar', fields:[
-      {type:'info',html:`${plate(r.placa)}<div style="margin-top:8px">Entrou às <b>${hm(r.entrada)}</b>${r.entrada.slice(0,10)!==today()?' de '+dShort(r.entrada.slice(0,10)):''} · ficou <b>${dur(m)}</b><br>Valor pela tabela: <b>${fmt(val)}</b></div>`},
+      {type:'info',html:`${plate(r.placa)}<div style="margin-top:8px">Entrou às <b>${hm(r.entrada)}</b>${r.entrada.slice(0,10)!==today()?' de '+dShort(r.entrada.slice(0,10)):''} · ficou <b>${dur(m)}</b><br>${ms?`Mensalista: <b>${esc(ms.nome)}</b> · mensalidade de ${esc(mLabel(today().slice(0,7)))} ${statusMensal(ms,today().slice(0,7)).st==='pago'?'paga':'<b class="neg">em aberto</b>'}`:`Valor pela tabela: <b>${fmt(val)}</b>`}</div>`},
       {id:'valor',label:'Valor cobrado',type:'money',value:val},
       {id:'forma',label:'Forma de pagamento',type:'select',options:FORMAS,value:'Pix'}],
     onSubmit: async v => {
@@ -617,6 +662,19 @@ const ACT = {
     onSubmit: async v => { if (!(v.valor>0)) throw {code:'zero'}; await lancar(null,{tipo:'saida',...v}); toast('Despesa lançada'); }}),
   apagarCaixa: id => { const x=byId(S.caixa,id); confirmBox('Apagar lançamento?', `${x.descricao||x.categoria} · ${fmt(x.valor)} em ${dShort(x.data)}. Isso não pode ser desfeito.`, 'Apagar', async()=>{ await write(()=>DB.collection('caixa').doc(id).delete()); toast('Lançamento apagado'); }); },
 
+  novoMensal: () => formMensal(),
+  editarMensal: id => formMensal(byId(S.mensalistas,id)),
+  receberMensal: id => { const m=byId(S.mensalistas,id); openForm({title:'Receber mensalidade · '+m.nome, submit:'Receber', fields:[
+      {id:'ref',label:'Mês da mensalidade',type:'month',value:S.mes,req:true},
+      {id:'valor',label:'Valor recebido',type:'money',value:m.valor,req:true},
+      {id:'data',label:'Dia do pagamento',type:'date',value:today(),req:true},
+      {id:'forma',label:'Forma',type:'select',options:FORMAS}],
+    onSubmit: async v => { if (!(v.valor>0)) throw {code:'zero'};
+      await lancar(`ms-${id}-${v.ref}`, {tipo:'entrada', categoria:'Mensalista', descricao:`Mensalidade ${mLabel(v.ref)} · ${m.nome}`, mensalistaId:id, ref:v.ref, valor:v.valor, forma:v.forma, data:v.data});
+      toast('Mensalidade recebida'); }}); },
+  estornarMensal: id => { const m=byId(S.mensalistas,id); const s=statusMensal(m); confirmBox('Desfazer pagamento?', `A mensalidade de ${mLabel(S.mes)} de ${m.nome} (${fmt(s.pg.valor)}) volta para “em aberto” e sai do caixa.`, 'Desfazer', async()=>{ await write(()=>DB.collection('caixa').doc(s.pg.id).delete()); toast('Pagamento desfeito'); }); },
+  exportCsv: () => exportar('csv'),
+  exportJson: () => exportar('json'),
   novoProduto: () => formProduto(),
   editarProduto: id => formProduto(byId(S.estoque,id)),
   usar: async id => { const i=byId(S.estoque,id); if ((+i.qtd||0)<=0) return toast('Esse produto já está zerado'); try { await write(()=>DB.collection('estoque').doc(id).update({qtd:Math.max(0,(+i.qtd||0)-1)})); } catch(e){ toast(errMsg(e)); } },
@@ -662,6 +720,45 @@ function formProduto(i){
     }});
   if (ed){ const foot=document.querySelector('#dlg .foot'); const b=document.createElement('button'); b.type='button'; b.className='btn danger'; b.textContent='Excluir'; b.style.marginRight='auto'; b.onclick=()=>confirmBox('Excluir produto?', i.nome+' sai do estoque. As compras já lançadas continuam no caixa.', 'Excluir', async()=>{ await write(()=>DB.collection('estoque').doc(i.id).delete()); toast('Produto excluído'); }); foot.prepend(b); }
 }
+function formMensal(m){
+  const ed=!!m; m=m||{vencimento:10, ativo:true, desde:today().slice(0,7), plano:'Mensal 24h'};
+  openForm({title:ed?'Editar mensalista':'Novo mensalista', submit:'Salvar', fields:[
+    {id:'nome',label:'Nome',req:true,full:true,value:m.nome||''},
+    {id:'placas',label:'Placa(s), separadas por vírgula',value:m.placas||'',full:true,ph:'ABC1D23, XYZ9A87'},
+    {id:'valor',label:'Valor da mensalidade',type:'money',value:m.valor??'',req:true},
+    {id:'vencimento',label:'Dia do vencimento',type:'number',value:m.vencimento??10},
+    {id:'plano',label:'Plano',value:m.plano||'',ph:'Mensal 24h, diurno, noturno'},
+    {id:'telefone',label:'Telefone / WhatsApp',type:'tel',value:m.telefone||''},
+    {id:'modelo',label:'Carro',value:m.modelo||'',ph:'Ex.: Corolla preto'},
+    {id:'desde',label:'Começou em',type:'month',value:m.desde||today().slice(0,7)},
+    {id:'ativo',label:'Mensalista ativo',type:'check',value:m.ativo!==false}],
+    onSubmit: async v => {
+      v.placas = String(v.placas||'').split(/[,\s]+/).map(plateFmt).filter(Boolean).join(', ');
+      v.vencimento = Math.min(31, Math.max(1, Math.round(+v.vencimento||10)));
+      await write(()=> ed ? DB.collection('mensalistas').doc(m.id).update(v) : DB.collection('mensalistas').add(v));
+      toast(ed?'Mensalista atualizado':'Mensalista cadastrado');
+    }});
+  if (ed){ const foot=document.querySelector('#dlg .foot'); const b=document.createElement('button'); b.type='button'; b.className='btn danger'; b.textContent='Excluir'; b.style.marginRight='auto'; b.onclick=()=>confirmBox('Excluir mensalista?', m.nome+' sai da lista. As mensalidades já recebidas continuam no caixa. Se ele só parou de pagar, prefira desmarcar “ativo”.', 'Excluir', async()=>{ await write(()=>DB.collection('mensalistas').doc(m.id).delete()); toast('Mensalista excluído'); }); foot.prepend(b); }
+}
+
+async function exportar(tipo){
+  const dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null;
+  if (!dl || !DB) return toast('Baixar arquivos não está disponível nesta tela.');
+  try {
+    if (tipo==='csv'){
+      const q = v => `"${String(v??'').replace(/"/g,'""')}"`;
+      const rows = [...S.caixa].sort((a,b)=>a.data.localeCompare(b.data)).map(x=>[x.data.split('-').reverse().join('/'), x.tipo==='entrada'?'Entrada':'Saída', x.categoria, x.descricao, x.forma, (x.tipo==='entrada'?1:-1)*(+x.valor||0)].map((v,i)=>i===5?String(v).replace('.',','):q(v)).join(';'));
+      await dl.save({filename:`caixa-${S.mes}.csv`, data:'﻿'+['Data;Tipo;Categoria;Descrição;Forma;Valor', ...rows].join('\r\n')});
+    } else {
+      const out = {exportadoEm:new Date().toISOString()};
+      for (const c of ['caixa','agenda','rotativo','mensalistas','estoque','equipe']) { const s = await DB.collection(c).get(); out[c] = s.docs.map(d=>({id:d.id, ...d.data()})); }
+      out.config = S.cfg;
+      await dl.save({filename:`backup-estacionamento-${today()}.json`, data:JSON.stringify(out,null,1)});
+    }
+    toast('Arquivo pronto');
+  } catch(e){ if (e && e.code!=='declined') toast('Não foi possível gerar o arquivo agora.'); }
+}
+
 function formFunc(f){
   const ed=!!f; f=f||{tipo:'mensal'};
   openForm({title:ed?'Editar funcionário':'Novo funcionário', submit:'Salvar', fields:[
