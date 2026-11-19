@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Só os e-mails desta lista podem ver e alterar os dados.
+    // Troque pelos e-mails reais (o seu e o do funcionário). Use letras minúsculas.
+    function liberado() {
+      return request.auth != null
+        && request.auth.token.email in [
+          'seu-email@gmail.com',
+          'email-do-funcionario@gmail.com'
+        ];
+    }
+    match /{documento=**} {
+      allow read, write: if liberado();
+    }
+  }
+}
