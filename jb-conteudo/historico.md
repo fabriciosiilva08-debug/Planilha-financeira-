@@ -5,3 +5,4 @@
 2026-11-19 21h54 | curiosidade | Vaticano, menor país do mundo (0,44 km²) | (teste, arquivo não salvo)
 2026-11-19 21h55 | dica | 3 passos para driblar o jet lag | (teste, arquivo não salvo)
 2026-11-20 06h53 | curiosidade | Lago Baikal, o mais profundo do mundo (1.642 m) | posts/2026-11-20/06h53-lago-baikal.json
+2026-11-20 08h53 | dica | líquidos na bagagem de mão em voos internacionais (regra ANAC) | posts/2026-11-20/08h53-liquidos-bagagem-de-mao.json
