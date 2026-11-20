@@ -10,3 +10,4 @@
 2026-11-20 12h54 | dica | seguro viagem para a Europa (Schengen, cobertura mínima de 30 mil euros) | posts/2026-11-20/12h54-seguro-viagem-europa.json
 2026-11-20 14h53 | curiosidade | Lençóis Maranhenses, Patrimônio Mundial da UNESCO em 2024 | posts/2026-11-20/14h53-lencois-maranhenses.json
 2026-11-20 16h53 | dica | autorização de viagem ao exterior para menor com um dos pais | posts/2026-11-20/16h53-menor-viagem-exterior.json
+2026-11-20 18h53 | curiosidade | por que as janelas de avião são arredondadas (Comet, 1954) | posts/2026-11-20/18h53-janelas-aviao.json
