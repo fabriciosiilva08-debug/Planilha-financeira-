@@ -16,3 +16,4 @@
 2026-11-21 10h53 | dica | primeiro cruzeiro (bolsa de mão, check-in, horário de volta a bordo) | posts/2026-11-21/10h53-primeiro-cruzeiro.json
 2026-11-21 12h53 | curiosidade | Cataratas do Iguaçu, cerca de 275 quedas em 2,7 km | posts/2026-11-21/12h53-cataratas-iguacu.json
 2026-11-21 14h55 | dica | circulação em voos longos (caminhar, exercícios no assento, fatores de risco) | posts/2026-11-21/14h55-circulacao-voo-longo.json
+2026-11-21 16h53 | curiosidade | Deserto do Atacama, não polar mais seco, 66 antenas do ALMA a ~5.000 m | posts/2026-11-21/16h53-deserto-atacama.json
