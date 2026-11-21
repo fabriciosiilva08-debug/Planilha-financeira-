@@ -21,6 +21,14 @@ A cada execução, produza **1 story** (1080×1920) de dicas OU curiosidades sob
    chamada para o direct da J&B, e 5 a 8 hashtags (#viagem #dicasdeviagem #turismo + específicas do tema).
 6. Adicione uma linha em `historico.md`: `AAAA-MM-DD HHhMM | tipo | tema | arquivo`.
 
+## Vídeo animado (1 a cada 3 posts)
+7. Veja as 2 últimas linhas do `historico.md`. Se nenhuma delas termina com `| vídeo`, este post também ganha vídeo:
+   rode `node video.js posts/AAAA-MM-DD/arquivo.json` (leva ~1 min). Sai um MP4 1080×1920 ao lado do JSON,
+   com o mesmo texto da arte animado: avião abrindo a cena, título palavra por palavra, número contando,
+   legenda progressiva e encerramento com logo + CTA, com trilha ambiente original (use `--mudo` para sem som).
+   Confira alguns quadros (`ffmpeg -ss 10 -i video.mp4 -frames:v 1 quadro.png`) e termine a linha do histórico com `| vídeo`.
+   Na legenda do vídeo vale a mesma do post; o vídeo serve para story ou reels.
+
 ## Regras de precisão (obrigatórias)
 - Só use fatos verificáveis. Para qualquer número, regra de entrada, documento, taxa ou recorde,
   confirme com uma pesquisa na web antes de publicar. Na dúvida, troque de tema.
