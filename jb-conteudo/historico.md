@@ -11,3 +11,5 @@
 2026-11-20 14h53 | curiosidade | Lençóis Maranhenses, Patrimônio Mundial da UNESCO em 2024 | posts/2026-11-20/14h53-lencois-maranhenses.json
 2026-11-20 16h53 | dica | autorização de viagem ao exterior para menor com um dos pais | posts/2026-11-20/16h53-menor-viagem-exterior.json
 2026-11-20 18h53 | curiosidade | por que as janelas de avião são arredondadas (Comet, 1954) | posts/2026-11-20/18h53-janelas-aviao.json | vídeo
+2026-11-21 01h20 | curiosidade | Especial GTA VI: Leonida/Vice City inspirada na Flórida (Miami, Keys, Everglades) | posts/2026-11-21/01h20-vice-city-existe.json | vídeo
+2026-11-21 01h25 | dica | Especial GTA VI: roteiro Leonida na vida real (Miami, Florida Keys, Everglades) | posts/2026-11-21/01h25-roteiro-leonida.json | vídeo
