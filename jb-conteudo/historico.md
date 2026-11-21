@@ -14,3 +14,4 @@
 2026-11-21 06h53 | dica | como economizar em passagens (alerta de preço, datas flexíveis, aeroportos próximos) | posts/2026-11-21/06h53-economizar-passagem.json
 2026-11-21 08h53 | curiosidade | Pastéis de Belém, receita secreta desde 1837 (Lisboa) | posts/2026-11-21/08h53-pasteis-de-belem.json
 2026-11-21 10h53 | dica | primeiro cruzeiro (bolsa de mão, check-in, horário de volta a bordo) | posts/2026-11-21/10h53-primeiro-cruzeiro.json
+2026-11-21 12h53 | curiosidade | Cataratas do Iguaçu, cerca de 275 quedas em 2,7 km | posts/2026-11-21/12h53-cataratas-iguacu.json
