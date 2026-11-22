@@ -19,3 +19,4 @@
 2026-11-21 16h53 | curiosidade | Deserto do Atacama, não polar mais seco, 66 antenas do ALMA a ~5.000 m | posts/2026-11-21/16h53-deserto-atacama.json
 2026-11-21 18h53 | dica | tomadas e voltagem na Europa (tipos C/F, Reino Unido tipo G, ~230 V) | posts/2026-11-21/18h53-tomadas-europa.json
 2026-11-22 06h53 | curiosidade | Torre Eiffel cresce até ~15 cm no verão (dilatação térmica) | posts/2026-11-22/06h53-torre-eiffel-verao.json
+2026-11-22 08h53 | dica | validade mínima do passaporte (Schengen 3 meses após saída, alguns destinos 6 meses) | posts/2026-11-22/08h53-validade-passaporte.json
