@@ -22,3 +22,4 @@
 2026-11-22 08h53 | dica | validade mínima do passaporte (Schengen 3 meses após saída, alguns destinos 6 meses) | posts/2026-11-22/08h53-validade-passaporte.json
 2026-11-22 10h53 | curiosidade | Machu Picchu, fama mundial em 1911 (Bingham) mas já conhecida por moradores | posts/2026-11-22/10h53-machu-picchu.json
 2026-11-22 12h53 | dica | bagagem extraviada (registro no aeroporto, prazos ANAC 7/21 dias, notas de despesas) | posts/2026-11-22/12h53-bagagem-extraviada.json
+2026-11-22 14h53 | curiosidade | Cristo Redentor atingido por ~6 raios por ano (INPE), 30 m, 1931 | posts/2026-11-22/14h53-cristo-redentor.json
